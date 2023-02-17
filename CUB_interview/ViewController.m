@@ -6,6 +6,7 @@
 //
 
 #import "ViewController.h"
+#import "TabbarController.h"
 
 @interface ViewController ()
 
@@ -16,6 +17,19 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   // Do any additional setup after loading the view.
+}
+
+- (IBAction)ttt:(id)sender {
+  
+//}
+//
+//- (void) showTabWithOptions:(int)option {
+  
+  
+  UINavigationController * navC = [[UINavigationController alloc] initWithRootViewController:[[TabbarController alloc] initWithNibName:@"TabbarController" bundle:nil]];
+  [navC.view setBackgroundColor:[UIColor colorNamed:@"ColorSilver"]];
+  [self.navigationController setViewControllers:[NSArray arrayWithObject:navC] animated:NO];
+  
 }
 
 

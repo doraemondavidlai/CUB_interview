@@ -7,8 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B358C28F299F753C0058D329 /* FriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B358C28D299F753C0058D329 /* FriendTableViewCell.m */; };
+		B358C290299F753C0058D329 /* FriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B358C28E299F753C0058D329 /* FriendTableViewCell.xib */; };
+		B358C29D299F818A0058D329 /* InviteCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B358C29B299F818A0058D329 /* InviteCollectionViewCell.m */; };
+		B358C29E299F818A0058D329 /* InviteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B358C29C299F818A0058D329 /* InviteCollectionViewCell.xib */; };
+		B358C2A9299F85E90058D329 /* TabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B358C2A8299F85E90058D329 /* TabbarController.m */; };
+		B358C2AE299F86AA0058D329 /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B358C2AC299F86AA0058D329 /* FriendsViewController.m */; };
+		B358C2AF299F86AA0058D329 /* FriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B358C2AD299F86AA0058D329 /* FriendsViewController.xib */; };
+		B358C2B3299F86E10058D329 /* EmptyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B358C2B1299F86E10058D329 /* EmptyViewController.m */; };
+		B358C2B4299F86E10058D329 /* EmptyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B358C2B2299F86E10058D329 /* EmptyViewController.xib */; };
 		B3945635299E11B5003A6F7A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B3945634299E11B5003A6F7A /* AppDelegate.m */; };
-		B3945638299E11B5003A6F7A /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B3945637299E11B5003A6F7A /* SceneDelegate.m */; };
 		B394563B299E11B5003A6F7A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B394563A299E11B5003A6F7A /* ViewController.m */; };
 		B394563E299E11B5003A6F7A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B394563C299E11B5003A6F7A /* Main.storyboard */; };
 		B3945641299E11B5003A6F7A /* CUB_interview.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B394563F299E11B5003A6F7A /* CUB_interview.xcdatamodeld */; };
@@ -18,11 +26,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B358C28C299F753C0058D329 /* FriendTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendTableViewCell.h; sourceTree = "<group>"; };
+		B358C28D299F753C0058D329 /* FriendTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendTableViewCell.m; sourceTree = "<group>"; };
+		B358C28E299F753C0058D329 /* FriendTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendTableViewCell.xib; sourceTree = "<group>"; };
+		B358C29A299F818A0058D329 /* InviteCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InviteCollectionViewCell.h; sourceTree = "<group>"; };
+		B358C29B299F818A0058D329 /* InviteCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InviteCollectionViewCell.m; sourceTree = "<group>"; };
+		B358C29C299F818A0058D329 /* InviteCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InviteCollectionViewCell.xib; sourceTree = "<group>"; };
+		B358C2A7299F85E90058D329 /* TabbarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabbarController.h; sourceTree = "<group>"; };
+		B358C2A8299F85E90058D329 /* TabbarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabbarController.m; sourceTree = "<group>"; };
+		B358C2AB299F86AA0058D329 /* FriendsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
+		B358C2AC299F86AA0058D329 /* FriendsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
+		B358C2AD299F86AA0058D329 /* FriendsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendsViewController.xib; sourceTree = "<group>"; };
+		B358C2B0299F86E10058D329 /* EmptyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmptyViewController.h; sourceTree = "<group>"; };
+		B358C2B1299F86E10058D329 /* EmptyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmptyViewController.m; sourceTree = "<group>"; };
+		B358C2B2299F86E10058D329 /* EmptyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyViewController.xib; sourceTree = "<group>"; };
 		B3945630299E11B5003A6F7A /* CUB_interview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CUB_interview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3945633299E11B5003A6F7A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B3945634299E11B5003A6F7A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B3945636299E11B5003A6F7A /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
-		B3945637299E11B5003A6F7A /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		B3945639299E11B5003A6F7A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		B394563A299E11B5003A6F7A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		B394563D299E11B5003A6F7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -44,6 +64,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B358C286299F75110058D329 /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				B358C28C299F753C0058D329 /* FriendTableViewCell.h */,
+				B358C28D299F753C0058D329 /* FriendTableViewCell.m */,
+				B358C28E299F753C0058D329 /* FriendTableViewCell.xib */,
+				B358C29A299F818A0058D329 /* InviteCollectionViewCell.h */,
+				B358C29B299F818A0058D329 /* InviteCollectionViewCell.m */,
+				B358C29C299F818A0058D329 /* InviteCollectionViewCell.xib */,
+			);
+			path = CustomCell;
+			sourceTree = "<group>";
+		};
+		B358C29F299F83F80058D329 /* TabbarController */ = {
+			isa = PBXGroup;
+			children = (
+				B358C2A7299F85E90058D329 /* TabbarController.h */,
+				B358C2A8299F85E90058D329 /* TabbarController.m */,
+			);
+			path = TabbarController;
+			sourceTree = "<group>";
+		};
+		B358C2AA299F868A0058D329 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B358C2B0299F86E10058D329 /* EmptyViewController.h */,
+				B358C2B1299F86E10058D329 /* EmptyViewController.m */,
+				B358C2B2299F86E10058D329 /* EmptyViewController.xib */,
+				B358C2AB299F86AA0058D329 /* FriendsViewController.h */,
+				B358C2AC299F86AA0058D329 /* FriendsViewController.m */,
+				B358C2AD299F86AA0058D329 /* FriendsViewController.xib */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		B3945627299E11B5003A6F7A = {
 			isa = PBXGroup;
 			children = (
@@ -63,10 +118,11 @@
 		B3945632299E11B5003A6F7A /* CUB_interview */ = {
 			isa = PBXGroup;
 			children = (
+				B358C286299F75110058D329 /* CustomCell */,
+				B358C29F299F83F80058D329 /* TabbarController */,
+				B358C2AA299F868A0058D329 /* ViewControllers */,
 				B3945633299E11B5003A6F7A /* AppDelegate.h */,
 				B3945634299E11B5003A6F7A /* AppDelegate.m */,
-				B3945636299E11B5003A6F7A /* SceneDelegate.h */,
-				B3945637299E11B5003A6F7A /* SceneDelegate.m */,
 				B3945639299E11B5003A6F7A /* ViewController.h */,
 				B394563A299E11B5003A6F7A /* ViewController.m */,
 				B394563C299E11B5003A6F7A /* Main.storyboard */,
@@ -136,6 +192,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B358C29E299F818A0058D329 /* InviteCollectionViewCell.xib in Resources */,
+				B358C2B4299F86E10058D329 /* EmptyViewController.xib in Resources */,
+				B358C290299F753C0058D329 /* FriendTableViewCell.xib in Resources */,
+				B358C2AF299F86AA0058D329 /* FriendsViewController.xib in Resources */,
 				B3945646299E11B6003A6F7A /* LaunchScreen.storyboard in Resources */,
 				B3945643299E11B6003A6F7A /* Assets.xcassets in Resources */,
 				B394563E299E11B5003A6F7A /* Main.storyboard in Resources */,
@@ -152,8 +212,12 @@
 				B3945649299E11B6003A6F7A /* main.m in Sources */,
 				B3945641299E11B5003A6F7A /* CUB_interview.xcdatamodeld in Sources */,
 				B394563B299E11B5003A6F7A /* ViewController.m in Sources */,
+				B358C2AE299F86AA0058D329 /* FriendsViewController.m in Sources */,
 				B3945635299E11B5003A6F7A /* AppDelegate.m in Sources */,
-				B3945638299E11B5003A6F7A /* SceneDelegate.m in Sources */,
+				B358C29D299F818A0058D329 /* InviteCollectionViewCell.m in Sources */,
+				B358C2B3299F86E10058D329 /* EmptyViewController.m in Sources */,
+				B358C2A9299F85E90058D329 /* TabbarController.m in Sources */,
+				B358C28F299F753C0058D329 /* FriendTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
