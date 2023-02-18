@@ -5,7 +5,7 @@
 //  Created by 賴永峰 on 2023/2/17.
 //
 
-#import "ViewController.h"
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,7 +15,7 @@ typedef enum {
   UI_OPTIONS_FRIEND_AND_INVITE
 } UI_OPTIONS;
 
-@interface FirstpageViewController : ViewController
+@interface FirstpageViewController : UIViewController
 
 @end
 

@@ -71,13 +71,6 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
-            <connections>
-                <outlet property="avatorImageView" destination="q7C-Sr-M1d" id="dzB-Aa-NNI"/>
-                <outlet property="nameLabel" destination="878-lZ-HvN" id="3i5-GN-aDo"/>
-                <outlet property="starImageView" destination="dI5-hb-OM0" id="M9A-z7-Idm"/>
-                <outlet property="subButton" destination="uIX-H7-OaO" id="ofb-cE-pJD"/>
-                <outlet property="transferButton" destination="QwZ-dG-y2I" id="bea-Hl-09z"/>
-            </connections>
             <point key="canvasLocation" x="73" y="0.0"/>
         </tableViewCell>
     </objects>

@@ -9,12 +9,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FriendTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *starImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *avatorImageView;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UIButton *transferButton;
-@property (weak, nonatomic) IBOutlet UIButton *subButton;
+@interface FriendTableViewCell : UITableViewCell {
+  
+}
+
+
+
+
+
+
+//@property (weak, nonatomic) IBOutlet UIImageView *starImageView;
+//@property (weak, nonatomic) IBOutlet UIImageView *headImageView;
+//@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+//@property (weak, nonatomic) IBOutlet UIButton *transferButton;
+//@property (weak, nonatomic) IBOutlet UIButton *subButton;
 
 @end
 

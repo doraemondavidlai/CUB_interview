@@ -10,6 +10,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FriendsViewController">
             <connections>
+                <outlet property="friendTableView" destination="oI2-QC-DyH" id="Egf-fO-HOd"/>
+                <outlet property="inviteCollectionView" destination="Y2H-mD-ObY" id="33X-Zy-d9L"/>
+                <outlet property="inviteCollectionViewFlowLayout" destination="LSU-dc-kY6" id="lbE-kU-fkO"/>
+                <outlet property="inviteCollectionViewHeightConstraint" destination="IRK-94-hSI" id="LPc-AJ-ALc"/>
+                <outlet property="menuCollectionView" destination="e0V-KP-cYN" id="6bU-A0-Vbd"/>
+                <outlet property="menuCollectionViewFlowLayout" destination="cfk-NA-qc0" id="Mvb-dX-CJM"/>
+                <outlet property="menuCollectionViewHeightConstrraint" destination="tdD-bj-tFb" id="8Vk-7T-6md"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
