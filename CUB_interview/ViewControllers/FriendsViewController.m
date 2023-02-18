@@ -21,6 +21,8 @@
   
   [self setNavigationItems];
   
+  uiOption = [[[NSUserDefaults standardUserDefaults] objectForKey:@"uiOption"] intValue];
+  
 }
 
 -(void) setNavigationItems {

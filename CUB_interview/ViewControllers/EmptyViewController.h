@@ -11,8 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface EmptyViewController : ViewController
 @property (weak, nonatomic) IBOutlet UILabel * hintLabel;
-@property (weak, nonatomic) IBOutlet NSString * hintWord;
-- (void) setHintWithMsg:(NSString *)msg;
+@property (weak, nonatomic) NSString * hintWord;
 @end
 
 NS_ASSUME_NONNULL_END

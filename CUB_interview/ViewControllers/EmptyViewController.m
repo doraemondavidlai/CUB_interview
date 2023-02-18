@@ -20,8 +20,4 @@
   [_hintLabel setText:_hintWord];
 }
 
-- (void) setHintWithMsg:(NSString *)msg {
-  [_hintLabel setText:msg];
-}
-
 @end

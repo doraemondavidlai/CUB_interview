@@ -6,7 +6,7 @@
 //
 
 #import "AppDelegate.h"
-#import "TabbarController.h"
+#import "FirstpageViewController.h"
 
 @interface AppDelegate ()
 
@@ -20,19 +20,9 @@
   
   
   
-//  UINavigationController * navC = [[UINavigationController alloc] initWithRootViewController:[TabbarController alloc]];
-//  [navC.view setBackgroundColor:[UIColor colorNamed:@"ColorSilver"]];
-  [self.window setRootViewController:TabbarController.new];
+  [self.window setRootViewController:FirstpageViewController.new];
   [self.window setBackgroundColor:[UIColor whiteColor]];
   [self.window makeKeyAndVisible];
-  
-  
-//  UINavigationController * navigateController;
-//  navigateController = [[UINavigationController alloc] initWithRootViewController:[TabbarController alloc]];
-//  
-//  [self.window setRootViewController:navigateController];
-////  [self.window setBackgroundColor:[UIColor whiteColor]];
-//  [self.window makeKeyAndVisible];
   
   
   return YES;

@@ -9,8 +9,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FriendsViewController : ViewController
-
+@interface FriendsViewController : ViewController {
+  int uiOption;
+}
 @end
 
 NS_ASSUME_NONNULL_END
