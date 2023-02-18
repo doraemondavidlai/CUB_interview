@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageCountLabelWidthConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIView *underlineView;
+- (void) setSelect:(BOOL)isSelect;
 @end
 
 NS_ASSUME_NONNULL_END

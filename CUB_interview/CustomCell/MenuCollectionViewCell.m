@@ -21,6 +21,9 @@
   [_messageCountLabel.layer setBorderWidth:0];
 }
 
+- (void) setSelect:(BOOL)isSelect {
+    [_underlineView setHidden:!isSelect];
+}
 
 
 @end

@@ -24,6 +24,13 @@
   
   [self setNavigationItems];
   
+  
+  [noticeView.layer setCornerRadius:5.0];
+  [noticeView.layer setMasksToBounds:YES];
+  [noticeView.layer setBorderWidth:0];
+  
+  
+  
   [inviteCollectionView registerNib:[UINib nibWithNibName:@"InviteCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"InviteCollectionViewCell"];
   [inviteCollectionView setDataSource:self];
   [inviteCollectionView setDelegate:self];
@@ -48,8 +55,35 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  
-  
+    
+  switch (uiOption) {
+    case UI_OPTIONS_NO_FRIEND: {
+      [nameLabel setText:@"紫晽"];
+      [kokoIdLabel setText:@"設定 KOKO ID"];
+      [noticeView setHidden:NO];
+      [emptyView setHidden:NO];
+    }
+      break;
+      
+    case UI_OPTIONS_ONLY_FRIEND: {
+      [nameLabel setText:@"紫晽"];
+      [kokoIdLabel setText:@"KOKO ID：olylinhuang"];
+      [noticeView setHidden:YES];
+      [emptyView setHidden:YES];
+    }
+      break;
+      
+    case UI_OPTIONS_FRIEND_AND_INVITE: {
+      [nameLabel setText:@"紫晽"];
+      [kokoIdLabel setText:@"KOKO ID：olylinhuang"];
+      [noticeView setHidden:YES];
+      [emptyView setHidden:YES];
+    }
+      break;
+      
+    default:
+      break;
+  }
 }
 
 -(void) setNavigationItems {
@@ -95,6 +129,7 @@
         break;
     }
     
+    [menuCell setSelect:indexPath.row == 0];
     return menuCell;
   }
   
@@ -126,7 +161,7 @@
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
   if ([collectionView isEqual:menuCollectionView]) {
-    return UIEdgeInsetsMake(0, 10, 0, 10);
+    return UIEdgeInsetsMake(0, 20, 0, 20);
   }
   
   if ([collectionView isEqual:inviteCollectionView]) {
@@ -156,7 +191,7 @@
     
     double cellWidth = [titleStr sizeWithAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13.0 weight:UIFontWeightRegular]}].width + 14;
     
-    return CGSizeMake(cellWidth > 100.0 ? 100.0 : cellWidth, 50.0);
+    return CGSizeMake(cellWidth < 80.0 ? 80.0 : cellWidth, 50.0);
   }
   
   if ([collectionView isEqual:inviteCollectionView]) {
@@ -201,6 +236,8 @@
   
   [friendCell.nameLabel setText:[NSString stringWithFormat:@"friend %ld", (long)indexPath.row]];
   
+  [friendCell setSelectionStyle:UITableViewCellSelectionStyleNone];
+  [friendCell setSeparatorInset:UIEdgeInsetsMake(0, 105, 0, 30)];
   return friendCell;
 }
 

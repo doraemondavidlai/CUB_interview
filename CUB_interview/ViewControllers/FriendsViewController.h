@@ -6,10 +6,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DefineHeader.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FriendsViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate> {
+  __weak IBOutlet UILabel *nameLabel;
+  __weak IBOutlet UILabel *kokoIdLabel;
+  __weak IBOutlet UIButton *setKokoIdButton;
+  __weak IBOutlet UIView *noticeView;
   __weak IBOutlet UICollectionView *inviteCollectionView;
   __weak IBOutlet UICollectionViewFlowLayout *inviteCollectionViewFlowLayout;
   __weak IBOutlet NSLayoutConstraint *inviteCollectionViewHeightConstraint;
@@ -17,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
   __weak IBOutlet UICollectionViewFlowLayout *menuCollectionViewFlowLayout;
   __weak IBOutlet NSLayoutConstraint *menuCollectionViewHeightConstrraint;
   __weak IBOutlet UITableView *friendTableView;
+  __weak IBOutlet UIView *emptyView;
   int uiOption;
 }
 @end

@@ -48,6 +48,7 @@
 		B358C2BF29A09C690058D329 /* FriendStatusTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendStatusTableViewCell.h; sourceTree = "<group>"; };
 		B358C2C029A09C690058D329 /* FriendStatusTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendStatusTableViewCell.m; sourceTree = "<group>"; };
 		B358C2C129A09C690058D329 /* FriendStatusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendStatusTableViewCell.xib; sourceTree = "<group>"; };
+		B358C2C529A123040058D329 /* DefineHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefineHeader.h; sourceTree = "<group>"; };
 		B3945630299E11B5003A6F7A /* CUB_interview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CUB_interview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3945633299E11B5003A6F7A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B3945634299E11B5003A6F7A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -110,6 +111,14 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		B358C2C429A122CF0058D329 /* SupportFiles */ = {
+			isa = PBXGroup;
+			children = (
+				B358C2C529A123040058D329 /* DefineHeader.h */,
+			);
+			path = SupportFiles;
+			sourceTree = "<group>";
+		};
 		B3945627299E11B5003A6F7A = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +138,7 @@
 		B3945632299E11B5003A6F7A /* CUB_interview */ = {
 			isa = PBXGroup;
 			children = (
+				B358C2C429A122CF0058D329 /* SupportFiles */,
 				B358C286299F75110058D329 /* CustomCell */,
 				B358C29F299F83F80058D329 /* TabbarController */,
 				B358C2AA299F868A0058D329 /* ViewControllers */,
