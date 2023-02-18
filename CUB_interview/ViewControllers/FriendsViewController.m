@@ -8,7 +8,7 @@
 #import "FriendsViewController.h"
 #import "MenuCollectionViewCell.h"
 #import "InviteCollectionViewCell.h"
-#import "FriendTableViewCell.h"
+#import "FriendStatusTableViewCell.h"
 
 @interface FriendsViewController ()
 
@@ -36,7 +36,7 @@
   menuCollectionView.showsHorizontalScrollIndicator = NO;
   [menuCollectionViewFlowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
   
-  [friendTableView registerNib:[UINib nibWithNibName:@"FriendTableViewCell" bundle:nil] forCellReuseIdentifier:@"FriendTableViewCell"];
+  [friendTableView registerNib:[UINib nibWithNibName:@"FriendStatusTableViewCell" bundle:nil] forCellReuseIdentifier:@"FriendStatusTableViewCell"];
   [friendTableView setDataSource:self];
   [friendTableView setDelegate:self];
   [friendTableView setTableFooterView:UIView.new];
@@ -197,9 +197,9 @@
 #pragma UITableView
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-  FriendTableViewCell * friendCell = [tableView dequeueReusableCellWithIdentifier:@"FriendTableViewCell"];
+  FriendStatusTableViewCell * friendCell = [tableView dequeueReusableCellWithIdentifier:@"FriendStatusTableViewCell"];
   
-//  [friendCell.nameLabel setText:[NSString stringWithFormat:@"friend %ld", (long)indexPath.row]];
+  [friendCell.nameLabel setText:[NSString stringWithFormat:@"friend %ld", (long)indexPath.row]];
   
   return friendCell;
 }

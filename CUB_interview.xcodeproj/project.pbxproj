@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B358C28F299F753C0058D329 /* FriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B358C28D299F753C0058D329 /* FriendTableViewCell.m */; };
-		B358C290299F753C0058D329 /* FriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B358C28E299F753C0058D329 /* FriendTableViewCell.xib */; };
 		B358C29D299F818A0058D329 /* InviteCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B358C29B299F818A0058D329 /* InviteCollectionViewCell.m */; };
 		B358C29E299F818A0058D329 /* InviteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B358C29C299F818A0058D329 /* InviteCollectionViewCell.xib */; };
 		B358C2A9299F85E90058D329 /* TabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B358C2A8299F85E90058D329 /* TabbarController.m */; };
@@ -20,6 +18,8 @@
 		B358C2B9299FC40F0058D329 /* FirstpageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B358C2B7299FC40F0058D329 /* FirstpageViewController.xib */; };
 		B358C2BD29A059300058D329 /* MenuCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B358C2BB29A059300058D329 /* MenuCollectionViewCell.m */; };
 		B358C2BE29A059300058D329 /* MenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B358C2BC29A059300058D329 /* MenuCollectionViewCell.xib */; };
+		B358C2C229A09C690058D329 /* FriendStatusTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B358C2C029A09C690058D329 /* FriendStatusTableViewCell.m */; };
+		B358C2C329A09C690058D329 /* FriendStatusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B358C2C129A09C690058D329 /* FriendStatusTableViewCell.xib */; };
 		B3945635299E11B5003A6F7A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B3945634299E11B5003A6F7A /* AppDelegate.m */; };
 		B3945641299E11B5003A6F7A /* CUB_interview.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B394563F299E11B5003A6F7A /* CUB_interview.xcdatamodeld */; };
 		B3945643299E11B6003A6F7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3945642299E11B6003A6F7A /* Assets.xcassets */; };
@@ -28,9 +28,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B358C28C299F753C0058D329 /* FriendTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendTableViewCell.h; sourceTree = "<group>"; };
-		B358C28D299F753C0058D329 /* FriendTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendTableViewCell.m; sourceTree = "<group>"; };
-		B358C28E299F753C0058D329 /* FriendTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendTableViewCell.xib; sourceTree = "<group>"; };
 		B358C29A299F818A0058D329 /* InviteCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InviteCollectionViewCell.h; sourceTree = "<group>"; };
 		B358C29B299F818A0058D329 /* InviteCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InviteCollectionViewCell.m; sourceTree = "<group>"; };
 		B358C29C299F818A0058D329 /* InviteCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InviteCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -48,6 +45,9 @@
 		B358C2BA29A059300058D329 /* MenuCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuCollectionViewCell.h; sourceTree = "<group>"; };
 		B358C2BB29A059300058D329 /* MenuCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuCollectionViewCell.m; sourceTree = "<group>"; };
 		B358C2BC29A059300058D329 /* MenuCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuCollectionViewCell.xib; sourceTree = "<group>"; };
+		B358C2BF29A09C690058D329 /* FriendStatusTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendStatusTableViewCell.h; sourceTree = "<group>"; };
+		B358C2C029A09C690058D329 /* FriendStatusTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendStatusTableViewCell.m; sourceTree = "<group>"; };
+		B358C2C129A09C690058D329 /* FriendStatusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendStatusTableViewCell.xib; sourceTree = "<group>"; };
 		B3945630299E11B5003A6F7A /* CUB_interview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CUB_interview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3945633299E11B5003A6F7A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B3945634299E11B5003A6F7A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -72,9 +72,9 @@
 		B358C286299F75110058D329 /* CustomCell */ = {
 			isa = PBXGroup;
 			children = (
-				B358C28C299F753C0058D329 /* FriendTableViewCell.h */,
-				B358C28D299F753C0058D329 /* FriendTableViewCell.m */,
-				B358C28E299F753C0058D329 /* FriendTableViewCell.xib */,
+				B358C2BF29A09C690058D329 /* FriendStatusTableViewCell.h */,
+				B358C2C029A09C690058D329 /* FriendStatusTableViewCell.m */,
+				B358C2C129A09C690058D329 /* FriendStatusTableViewCell.xib */,
 				B358C29A299F818A0058D329 /* InviteCollectionViewCell.h */,
 				B358C29B299F818A0058D329 /* InviteCollectionViewCell.m */,
 				B358C29C299F818A0058D329 /* InviteCollectionViewCell.xib */,
@@ -203,11 +203,11 @@
 				B358C29E299F818A0058D329 /* InviteCollectionViewCell.xib in Resources */,
 				B358C2B4299F86E10058D329 /* EmptyViewController.xib in Resources */,
 				B358C2B9299FC40F0058D329 /* FirstpageViewController.xib in Resources */,
-				B358C290299F753C0058D329 /* FriendTableViewCell.xib in Resources */,
 				B358C2AF299F86AA0058D329 /* FriendsViewController.xib in Resources */,
 				B3945646299E11B6003A6F7A /* LaunchScreen.storyboard in Resources */,
 				B3945643299E11B6003A6F7A /* Assets.xcassets in Resources */,
 				B358C2BE29A059300058D329 /* MenuCollectionViewCell.xib in Resources */,
+				B358C2C329A09C690058D329 /* FriendStatusTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B358C2C229A09C690058D329 /* FriendStatusTableViewCell.m in Sources */,
 				B358C2BD29A059300058D329 /* MenuCollectionViewCell.m in Sources */,
 				B3945649299E11B6003A6F7A /* main.m in Sources */,
 				B3945641299E11B5003A6F7A /* CUB_interview.xcdatamodeld in Sources */,
@@ -227,7 +228,6 @@
 				B358C29D299F818A0058D329 /* InviteCollectionViewCell.m in Sources */,
 				B358C2B3299F86E10058D329 /* EmptyViewController.m in Sources */,
 				B358C2A9299F85E90058D329 /* TabbarController.m in Sources */,
-				B358C28F299F753C0058D329 /* FriendTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
