@@ -16,7 +16,7 @@
   [_underlineView.layer setMasksToBounds:YES];
   [_underlineView.layer setBorderWidth:0];
   
-  [_messageCountLabel.layer setCornerRadius:7.0];
+  [_messageCountLabel.layer setCornerRadius:9.0];
   [_messageCountLabel.layer setMasksToBounds:YES];
   [_messageCountLabel.layer setBorderWidth:0];
 }

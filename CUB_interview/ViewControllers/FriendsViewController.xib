@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FriendsViewController">
             <connections>
+                <outlet property="addFriendButton" destination="z8m-NF-LC8" id="UdI-r9-uKg"/>
                 <outlet property="emptyView" destination="bG7-kv-res" id="k6P-ib-BNF"/>
                 <outlet property="friendTableView" destination="oI2-QC-DyH" id="Egf-fO-HOd"/>
                 <outlet property="inviteCollectionView" destination="Y2H-mD-ObY" id="33X-Zy-d9L"/>
@@ -22,6 +23,7 @@
                 <outlet property="menuCollectionViewHeightConstrraint" destination="tdD-bj-tFb" id="8Vk-7T-6md"/>
                 <outlet property="nameLabel" destination="D8b-jH-Rwg" id="IFY-53-CRg"/>
                 <outlet property="noticeView" destination="15K-V9-UzK" id="alG-FH-ewy"/>
+                <outlet property="setKoKoIdHintLabel" destination="EFf-uM-yQa" id="VYp-Xk-O7N"/>
                 <outlet property="setKokoIdButton" destination="xu0-Zn-Dyg" id="DdD-gq-P9c"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -127,62 +129,87 @@
                         <constraint firstItem="Srf-oS-TFV" firstAttribute="centerY" secondItem="Lcz-LG-cLf" secondAttribute="centerY" multiplier="1.1" id="pls-JQ-2y4"/>
                     </constraints>
                 </view>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bG7-kv-res">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bG7-kv-res">
                     <rect key="frame" x="0.0" y="190" width="393" height="628"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgFriendsEmpty" translatesAutoresizingMaskIntoConstraints="NO" id="uR5-BZ-fXp">
-                            <rect key="frame" x="65" y="30" width="263" height="184.66666666666666"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="uR5-BZ-fXp" secondAttribute="height" multiplier="245:172" id="IiQ-e1-j71"/>
-                            </constraints>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="就從加好友開始吧：）" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JAT-dg-u8T">
-                            <rect key="frame" x="44" y="255.66666666666671" width="305" height="25.333333333333343"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                            <color key="textColor" name="ColorGreyishBrown"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yNO-HA-XFH">
-                            <rect key="frame" x="67" y="289" width="259" height="33.666666666666686"/>
-                            <string key="text">與好友們一起用 KOKO 聊起來！
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Tm-Oa-cb4">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="628"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgFriendsEmpty" translatesAutoresizingMaskIntoConstraints="NO" id="uR5-BZ-fXp">
+                                    <rect key="frame" x="74" y="30" width="245" height="172"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="uR5-BZ-fXp" secondAttribute="height" multiplier="245:172" id="IiQ-e1-j71"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="就從加好友開始吧：）" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JAT-dg-u8T">
+                                    <rect key="frame" x="44" y="243" width="305" height="25.333333333333314"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                    <color key="textColor" name="ColorGreyishBrown"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yNO-HA-XFH">
+                                    <rect key="frame" x="67" y="276.33333333333331" width="259" height="33.666666666666686"/>
+                                    <string key="text">與好友們一起用 KOKO 聊起來！
 還能互相收付款、發紅包喔：）</string>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <color key="textColor" name="ColorBrownGray"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z8m-NF-LC8">
-                            <rect key="frame" x="91" y="347.66666666666663" width="211" height="40"/>
-                            <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" name="ColorBrownGray"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z8m-NF-LC8">
+                                    <rect key="frame" x="100.66666666666669" y="335" width="192" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="982-qQ-2td"/>
+                                        <constraint firstAttribute="width" constant="192" id="N9V-OS-pAn"/>
+                                    </constraints>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="加朋友">
+                                        <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
+                                    </buttonConfiguration>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="幫助好友更快找到你？設定 KOKO ID" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EFf-uM-yQa">
+                                    <rect key="frame" x="43" y="412" width="307" height="15.666666666666686"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <color key="textColor" name="ColorBrownGray"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icAddFriendWhite" translatesAutoresizingMaskIntoConstraints="NO" id="BKV-hR-pGV">
+                                    <rect key="frame" x="260.66666666666669" y="343" width="24" height="24"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="BKV-hR-pGV" secondAttribute="height" multiplier="1:1" id="kvY-Go-LXi"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="982-qQ-2td"/>
+                                <constraint firstAttribute="trailing" secondItem="JAT-dg-u8T" secondAttribute="trailing" constant="44" id="2QG-4C-Znc"/>
+                                <constraint firstItem="EFf-uM-yQa" firstAttribute="centerX" secondItem="2Tm-Oa-cb4" secondAttribute="centerX" id="2ZM-63-MMp"/>
+                                <constraint firstItem="uR5-BZ-fXp" firstAttribute="top" secondItem="2Tm-Oa-cb4" secondAttribute="top" constant="30" id="3h5-s5-aGj"/>
+                                <constraint firstItem="z8m-NF-LC8" firstAttribute="top" secondItem="yNO-HA-XFH" secondAttribute="bottom" constant="25" id="54q-5i-Sqo"/>
+                                <constraint firstItem="JAT-dg-u8T" firstAttribute="centerX" secondItem="2Tm-Oa-cb4" secondAttribute="centerX" id="7Wt-bh-waf"/>
+                                <constraint firstItem="yNO-HA-XFH" firstAttribute="leading" secondItem="2Tm-Oa-cb4" secondAttribute="leading" constant="67" id="JOd-LG-3Eq"/>
+                                <constraint firstItem="BKV-hR-pGV" firstAttribute="top" secondItem="z8m-NF-LC8" secondAttribute="top" constant="8" id="LHi-eh-UDv"/>
+                                <constraint firstAttribute="trailing" secondItem="EFf-uM-yQa" secondAttribute="trailing" constant="43" id="LTA-Zc-wU1"/>
+                                <constraint firstItem="uR5-BZ-fXp" firstAttribute="centerX" secondItem="2Tm-Oa-cb4" secondAttribute="centerX" id="MZf-qC-Q0e"/>
+                                <constraint firstItem="z8m-NF-LC8" firstAttribute="centerX" secondItem="2Tm-Oa-cb4" secondAttribute="centerX" id="Xq4-IL-UYO"/>
+                                <constraint firstItem="BKV-hR-pGV" firstAttribute="trailing" secondItem="z8m-NF-LC8" secondAttribute="trailing" constant="-8" id="i77-re-1jH"/>
+                                <constraint firstItem="yNO-HA-XFH" firstAttribute="centerX" secondItem="2Tm-Oa-cb4" secondAttribute="centerX" id="moK-oz-hhG"/>
+                                <constraint firstItem="BKV-hR-pGV" firstAttribute="bottom" secondItem="z8m-NF-LC8" secondAttribute="bottom" constant="-8" id="o3g-Zz-O6C"/>
+                                <constraint firstItem="EFf-uM-yQa" firstAttribute="leading" secondItem="2Tm-Oa-cb4" secondAttribute="leading" constant="43" id="oaU-09-77l"/>
+                                <constraint firstItem="JAT-dg-u8T" firstAttribute="leading" secondItem="2Tm-Oa-cb4" secondAttribute="leading" constant="44" id="ogs-Dx-laT"/>
+                                <constraint firstItem="JAT-dg-u8T" firstAttribute="top" secondItem="uR5-BZ-fXp" secondAttribute="bottom" constant="41" id="pqt-wM-gUT"/>
+                                <constraint firstItem="EFf-uM-yQa" firstAttribute="top" secondItem="z8m-NF-LC8" secondAttribute="bottom" constant="37" id="t6r-qW-PpR"/>
+                                <constraint firstItem="yNO-HA-XFH" firstAttribute="top" secondItem="JAT-dg-u8T" secondAttribute="bottom" constant="8" id="t8G-Qo-FA4"/>
+                                <constraint firstAttribute="bottom" secondItem="EFf-uM-yQa" secondAttribute="bottom" id="vEd-Sn-5dd"/>
+                                <constraint firstAttribute="trailing" secondItem="yNO-HA-XFH" secondAttribute="trailing" constant="67" id="zMR-rj-b64"/>
                             </constraints>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                        </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="幫助好友更快找到你？設定 KOKO ID" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EFf-uM-yQa">
-                            <rect key="frame" x="43" y="424.66666666666663" width="307" height="15.666666666666686"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <color key="textColor" name="ColorBrownGray"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        </scrollView>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="z8m-NF-LC8" secondAttribute="trailing" constant="91" id="AcQ-oB-We2"/>
-                        <constraint firstAttribute="trailing" secondItem="uR5-BZ-fXp" secondAttribute="trailing" constant="65" id="Beq-9H-eom"/>
-                        <constraint firstAttribute="trailing" secondItem="JAT-dg-u8T" secondAttribute="trailing" constant="44" id="CKF-Ih-481"/>
-                        <constraint firstItem="uR5-BZ-fXp" firstAttribute="leading" secondItem="bG7-kv-res" secondAttribute="leading" constant="65" id="D8p-r6-UeH"/>
-                        <constraint firstItem="uR5-BZ-fXp" firstAttribute="top" secondItem="bG7-kv-res" secondAttribute="top" constant="30" id="OKo-Eg-Cm8"/>
-                        <constraint firstItem="JAT-dg-u8T" firstAttribute="top" secondItem="uR5-BZ-fXp" secondAttribute="bottom" constant="41" id="Q9I-OZ-Nro"/>
-                        <constraint firstItem="z8m-NF-LC8" firstAttribute="leading" secondItem="bG7-kv-res" secondAttribute="leading" constant="91" id="Xol-4w-Ezn"/>
-                        <constraint firstItem="JAT-dg-u8T" firstAttribute="leading" secondItem="bG7-kv-res" secondAttribute="leading" constant="44" id="aKY-iJ-biW"/>
-                        <constraint firstItem="yNO-HA-XFH" firstAttribute="leading" secondItem="bG7-kv-res" secondAttribute="leading" constant="67" id="euI-ri-oqB"/>
-                        <constraint firstItem="EFf-uM-yQa" firstAttribute="leading" secondItem="bG7-kv-res" secondAttribute="leading" constant="43" id="g2q-NH-EoX"/>
-                        <constraint firstItem="yNO-HA-XFH" firstAttribute="top" secondItem="JAT-dg-u8T" secondAttribute="bottom" constant="8" id="hgb-Rq-Elp"/>
-                        <constraint firstAttribute="trailing" secondItem="EFf-uM-yQa" secondAttribute="trailing" constant="43" id="jS7-JN-cOB"/>
-                        <constraint firstItem="z8m-NF-LC8" firstAttribute="top" secondItem="yNO-HA-XFH" secondAttribute="bottom" constant="25" id="jTX-ZN-a0S"/>
-                        <constraint firstItem="EFf-uM-yQa" firstAttribute="top" secondItem="z8m-NF-LC8" secondAttribute="bottom" constant="37" id="qDg-sY-sb6"/>
-                        <constraint firstAttribute="trailing" secondItem="yNO-HA-XFH" secondAttribute="trailing" constant="67" id="wXv-DX-NPI"/>
+                        <constraint firstItem="2Tm-Oa-cb4" firstAttribute="leading" secondItem="bG7-kv-res" secondAttribute="leading" id="4et-iU-KZh"/>
+                        <constraint firstItem="2Tm-Oa-cb4" firstAttribute="top" secondItem="bG7-kv-res" secondAttribute="top" id="JZQ-aK-M2y"/>
+                        <constraint firstAttribute="bottom" secondItem="2Tm-Oa-cb4" secondAttribute="bottom" id="XvX-hk-mSz"/>
+                        <constraint firstItem="2Tm-Oa-cb4" firstAttribute="width" secondItem="bG7-kv-res" secondAttribute="width" id="ZX1-il-5Pp"/>
+                        <constraint firstAttribute="trailing" secondItem="2Tm-Oa-cb4" secondAttribute="trailing" id="rO6-O1-AvT"/>
                     </constraints>
                 </view>
             </subviews>
@@ -214,6 +241,7 @@
         </view>
     </objects>
     <resources>
+        <image name="icAddFriendWhite" width="24" height="24"/>
         <image name="iconInfoRight" width="18" height="18"/>
         <image name="imgFriendsEmpty" width="245" height="172"/>
         <image name="imgFriendsFemaleDefault" width="52" height="54"/>
@@ -231,9 +259,6 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

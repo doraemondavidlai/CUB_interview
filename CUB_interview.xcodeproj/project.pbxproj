@@ -138,8 +138,8 @@
 		B3945632299E11B5003A6F7A /* CUB_interview */ = {
 			isa = PBXGroup;
 			children = (
-				B358C2C429A122CF0058D329 /* SupportFiles */,
 				B358C286299F75110058D329 /* CustomCell */,
+				B358C2C429A122CF0058D329 /* SupportFiles */,
 				B358C29F299F83F80058D329 /* TabbarController */,
 				B358C2AA299F868A0058D329 /* ViewControllers */,
 				B3945633299E11B5003A6F7A /* AppDelegate.h */,

@@ -23,13 +23,45 @@
   [self.navigationController.navigationBar setTintColor:[UIColor colorNamed:@"ColorHotPink"]];
   
   [self setNavigationItems];
+
+  messageTitleArray = [NSArray arrayWithObjects:@"好友", @"聊天", nil];
+  messageCountArray = [[NSMutableArray alloc] init];
   
   
   [noticeView.layer setCornerRadius:5.0];
   [noticeView.layer setMasksToBounds:YES];
   [noticeView.layer setBorderWidth:0];
   
+  CAGradientLayer * gradient = [CAGradientLayer layer];
+  [gradient setColors:[NSArray arrayWithObjects:
+                       (id)[UIColor colorWithRed:86.0/255.0 green:179.0/255.0 blue:11.0/255.0 alpha:1.0].CGColor,
+                       (id)[UIColor colorWithRed:166.0/255.0 green:204.0/255.0 blue:66.0/255.0 alpha:1.0].CGColor,
+                       nil]];
+  [gradient setFrame:addFriendButton.bounds];
+  gradient.startPoint = CGPointMake(0.0, 0.5);
+  gradient.endPoint = CGPointMake(1.0, 0.5);
+  gradient.cornerRadius = 20.0;
+  [addFriendButton.layer insertSublayer:gradient atIndex:0];
+  [addFriendButton.layer setMasksToBounds:YES];
+  [addFriendButton.layer setCornerRadius:20.0];
+  [addFriendButton.layer setBorderWidth:0];
+  [addFriendButton.layer setMasksToBounds:NO];
+  [addFriendButton.layer setShadowColor:[UIColor colorWithRed:121.0/255.0 green:196.0/255.0 blue:27.0/255.0 alpha:0.4].CGColor];
+  [addFriendButton.layer setShadowOffset:CGSizeMake(0.0, 4.0)];
+  [addFriendButton.layer setShadowOpacity:1.0];
+  [addFriendButton.layer setShadowRadius:8.0];
+  [addFriendButton setTintColor:[UIColor colorNamed:@"ColorWhite"]];
   
+  NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] init];
+  [attString appendAttributedString:[[NSAttributedString alloc] initWithString:@"幫助好友更快找到你？"
+                                                                    attributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleNone),
+                                                                                 NSForegroundColorAttributeName:[UIColor colorNamed:@"ColorBrownGray"],
+                                                                                 NSFontAttributeName:[UIFont systemFontOfSize:13]}]];
+  [attString appendAttributedString:[[NSAttributedString alloc] initWithString:@"設定 KOKO ID"
+                                                                    attributes:@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle),
+                                                                                 NSForegroundColorAttributeName:[UIColor colorNamed:@"ColorHotPink"],
+                                                                                 NSFontAttributeName:[UIFont systemFontOfSize:13]}]];
+  [setKoKoIdHintLabel setAttributedText:attString];
   
   [inviteCollectionView registerNib:[UINib nibWithNibName:@"InviteCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"InviteCollectionViewCell"];
   [inviteCollectionView setDataSource:self];
@@ -62,6 +94,7 @@
       [kokoIdLabel setText:@"設定 KOKO ID"];
       [noticeView setHidden:NO];
       [emptyView setHidden:NO];
+      messageCountArray = [NSMutableArray arrayWithObjects:@"0", @"0", nil];
     }
       break;
       
@@ -70,6 +103,7 @@
       [kokoIdLabel setText:@"KOKO ID：olylinhuang"];
       [noticeView setHidden:YES];
       [emptyView setHidden:YES];
+      messageCountArray = [NSMutableArray arrayWithObjects:@"0", @"99+", nil];
     }
       break;
       
@@ -78,6 +112,7 @@
       [kokoIdLabel setText:@"KOKO ID：olylinhuang"];
       [noticeView setHidden:YES];
       [emptyView setHidden:YES];
+      messageCountArray = [NSMutableArray arrayWithObjects:@"2", @"99+", nil];
     }
       break;
       
@@ -114,21 +149,13 @@
   if ([collectionView isEqual:menuCollectionView]) {
     MenuCollectionViewCell * menuCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MenuCollectionViewCell" forIndexPath:indexPath];
     
-    switch (indexPath.row) {
-      case 0:
-        [menuCell.titleLabel setText:@"好友"];
-        [menuCell.messageCountLabel setText:@"2"];
-        break;
-        
-      case 1:
-        [menuCell.titleLabel setText:@"聊天"];
-        [menuCell.messageCountLabel setText:@"99+"];
-        break;
-        
-      default:
-        break;
-    }
+    [menuCell.titleLabel setText:[messageTitleArray objectAtIndex:indexPath.row]];
     
+    NSString * msgStr = [messageCountArray objectAtIndex:indexPath.row];
+    [menuCell.messageCountLabel setHidden:[msgStr isEqualToString:@"0"]];
+    [menuCell.messageCountLabel setText:msgStr];
+    double msgStrWidth = [msgStr sizeWithAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:12.0 weight:UIFontWeightRegular]}].width + 8;
+    [menuCell.messageCountLabelWidthConstraint setConstant:msgStrWidth < 18.0 ? 18.0 : msgStrWidth];
     [menuCell setSelect:indexPath.row == 0];
     return menuCell;
   }
@@ -174,24 +201,19 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
   if ([collectionView isEqual:menuCollectionView]) {
-    NSString * titleStr = @"";
+    NSString * titleStr = [messageTitleArray objectAtIndex:indexPath.row];
     
-    switch (indexPath.row) {
-      case 0:
-        titleStr = @"好友";
-        break;
-        
-      case 1:
-        titleStr = @"聊天";
-        break;
-        
-      default:
-        break;
+    double titleWidth = [titleStr sizeWithAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13.0 weight:UIFontWeightRegular]}].width;
+    
+    NSString * msgStr = [messageCountArray objectAtIndex:indexPath.row];
+    
+    if (![msgStr isEqualToString:@"0"]) {
+      double msgStrWidth = [msgStr sizeWithAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:12.0 weight:UIFontWeightRegular]}].width + 8;
+      msgStrWidth = msgStrWidth < 18.0 ? 18.0 : msgStrWidth;
+      return CGSizeMake(10.0 + titleWidth + 6.0 + msgStrWidth + 10.0, 50.0);
+    } else {
+      return CGSizeMake(10.0 + titleWidth + 10.0, 50.0);
     }
-    
-    double cellWidth = [titleStr sizeWithAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13.0 weight:UIFontWeightRegular]}].width + 14;
-    
-    return CGSizeMake(cellWidth < 80.0 ? 80.0 : cellWidth, 50.0);
   }
   
   if ([collectionView isEqual:inviteCollectionView]) {

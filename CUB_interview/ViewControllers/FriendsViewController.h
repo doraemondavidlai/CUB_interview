@@ -23,7 +23,12 @@ NS_ASSUME_NONNULL_BEGIN
   __weak IBOutlet NSLayoutConstraint *menuCollectionViewHeightConstrraint;
   __weak IBOutlet UITableView *friendTableView;
   __weak IBOutlet UIView *emptyView;
+  __weak IBOutlet UIButton *addFriendButton;
+  __weak IBOutlet UILabel *setKoKoIdHintLabel;
+  
   int uiOption;
+  NSMutableArray * messageTitleArray;
+  NSMutableArray * messageCountArray;
 }
 @end
 

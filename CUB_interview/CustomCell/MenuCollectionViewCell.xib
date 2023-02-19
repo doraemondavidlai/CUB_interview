@@ -29,12 +29,12 @@
                             <constraint firstAttribute="height" constant="4" id="9K7-oJ-3RI"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xo6-aB-Uup">
-                        <rect key="frame" x="49" y="16.333333333333332" width="14" height="14"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xo6-aB-Uup">
+                        <rect key="frame" x="49" y="12.333333333333336" width="18" height="18"/>
                         <color key="backgroundColor" name="ColorSoftPink"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="14" id="IST-Go-iMW"/>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="14" id="ez5-ok-vyJ"/>
+                            <constraint firstAttribute="height" constant="18" id="IST-Go-iMW"/>
+                            <constraint firstAttribute="width" constant="18" id="ez5-ok-vyJ"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" name="ColorWhite"/>
@@ -58,7 +58,7 @@
                 <outlet property="titleLabel" destination="X2H-gS-TjW" id="JXQ-yN-Vq5"/>
                 <outlet property="underlineView" destination="HS9-yl-Gpt" id="Hq7-iH-XJd"/>
             </connections>
-            <point key="canvasLocation" x="-56.488549618320612" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="-166" y="15"/>
         </collectionViewCell>
     </objects>
     <resources>
