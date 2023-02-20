@@ -20,6 +20,7 @@
 		B358C2BE29A059300058D329 /* MenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B358C2BC29A059300058D329 /* MenuCollectionViewCell.xib */; };
 		B358C2C229A09C690058D329 /* FriendStatusTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B358C2C029A09C690058D329 /* FriendStatusTableViewCell.m */; };
 		B358C2C329A09C690058D329 /* FriendStatusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B358C2C129A09C690058D329 /* FriendStatusTableViewCell.xib */; };
+		B358C2C829A208850058D329 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B358C2C729A208850058D329 /* NetworkManager.m */; };
 		B3945635299E11B5003A6F7A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B3945634299E11B5003A6F7A /* AppDelegate.m */; };
 		B3945641299E11B5003A6F7A /* CUB_interview.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B394563F299E11B5003A6F7A /* CUB_interview.xcdatamodeld */; };
 		B3945643299E11B6003A6F7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3945642299E11B6003A6F7A /* Assets.xcassets */; };
@@ -49,6 +50,8 @@
 		B358C2C029A09C690058D329 /* FriendStatusTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendStatusTableViewCell.m; sourceTree = "<group>"; };
 		B358C2C129A09C690058D329 /* FriendStatusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendStatusTableViewCell.xib; sourceTree = "<group>"; };
 		B358C2C529A123040058D329 /* DefineHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefineHeader.h; sourceTree = "<group>"; };
+		B358C2C729A208850058D329 /* NetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
+		B358C2C929A209AD0058D329 /* NetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		B3945630299E11B5003A6F7A /* CUB_interview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CUB_interview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3945633299E11B5003A6F7A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B3945634299E11B5003A6F7A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -119,6 +122,15 @@
 			path = SupportFiles;
 			sourceTree = "<group>";
 		};
+		B358C2C629A208550058D329 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				B358C2C929A209AD0058D329 /* NetworkManager.h */,
+				B358C2C729A208850058D329 /* NetworkManager.m */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		B3945627299E11B5003A6F7A = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				B358C286299F75110058D329 /* CustomCell */,
+				B358C2C629A208550058D329 /* Manager */,
 				B358C2C429A122CF0058D329 /* SupportFiles */,
 				B358C29F299F83F80058D329 /* TabbarController */,
 				B358C2AA299F868A0058D329 /* ViewControllers */,
@@ -231,6 +244,7 @@
 				B358C2C229A09C690058D329 /* FriendStatusTableViewCell.m in Sources */,
 				B358C2BD29A059300058D329 /* MenuCollectionViewCell.m in Sources */,
 				B3945649299E11B6003A6F7A /* main.m in Sources */,
+				B358C2C829A208850058D329 /* NetworkManager.m in Sources */,
 				B3945641299E11B5003A6F7A /* CUB_interview.xcdatamodeld in Sources */,
 				B358C2AE299F86AA0058D329 /* FriendsViewController.m in Sources */,
 				B358C2B8299FC40F0058D329 /* FirstpageViewController.m in Sources */,

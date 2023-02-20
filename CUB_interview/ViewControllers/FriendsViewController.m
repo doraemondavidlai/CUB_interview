@@ -9,6 +9,7 @@
 #import "MenuCollectionViewCell.h"
 #import "InviteCollectionViewCell.h"
 #import "FriendStatusTableViewCell.h"
+#import "NetworkManager.h"
 
 @interface FriendsViewController ()
 
@@ -87,7 +88,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-    
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(waitForNetworkResponse:) name:@"NetworkResponse" object:nil];
+  
   switch (uiOption) {
     case UI_OPTIONS_NO_FRIEND: {
       [nameLabel setText:@"紫晽"];
@@ -95,6 +97,9 @@
       [noticeView setHidden:NO];
       [emptyView setHidden:NO];
       messageCountArray = [NSMutableArray arrayWithObjects:@"0", @"0", nil];
+      
+      [[NetworkManager shared] fetchManData];
+      [[NetworkManager shared] fetchEmptyData];
     }
       break;
       
@@ -104,6 +109,10 @@
       [noticeView setHidden:YES];
       [emptyView setHidden:YES];
       messageCountArray = [NSMutableArray arrayWithObjects:@"0", @"99+", nil];
+      
+      [[NetworkManager shared] fetchManData];
+      [[NetworkManager shared] fetchFriend1Data];
+      [[NetworkManager shared] fetchFriend2Data];
     }
       break;
       
@@ -113,12 +122,20 @@
       [noticeView setHidden:YES];
       [emptyView setHidden:YES];
       messageCountArray = [NSMutableArray arrayWithObjects:@"2", @"99+", nil];
+      
+      [[NetworkManager shared] fetchManData];
+      [[NetworkManager shared] fetchFriendAndInviteData];
     }
       break;
       
     default:
       break;
   }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(void) setNavigationItems {
@@ -270,5 +287,67 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   return 60.0;
 }
+
+#pragma Network
+- (void)waitForNetworkResponse:(NSNotification *)notification {
+  NSDictionary * alteredDataDict = notification.userInfo;
+  NSDictionary * responseDict = [alteredDataDict objectForKey:@"response"];
+  NSLog(@"responseDict: %@", responseDict);
+  
+  switch ([[responseDict objectForKey:@"apiTopic"] intValue]) {
+    case API_MAN: {
+      NSDictionary * apiDict = [responseDict objectForKey:@"apiDict"];
+      NSArray * responseArray = [apiDict objectForKey:@"response"];
+      
+      if ([responseArray count] < 1) {
+        break;
+      }
+      
+      NSDictionary * responseDict = [responseArray objectAtIndex:0];
+      NSString * name = [responseDict objectForKey:@"name"];
+      
+      if (name != nil) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+          [self->nameLabel setText:name];
+        });
+      }
+      
+      if (uiOption != UI_OPTIONS_NO_FRIEND) {
+        NSString * kokoid = [responseDict objectForKey:@"kokoid"];
+        
+        if (kokoid != nil) {
+          dispatch_async(dispatch_get_main_queue(), ^{
+            [self->kokoIdLabel setText:[NSString stringWithFormat:@"KOKO ID：%@", kokoid]];
+          });
+        }
+      }
+    }
+      break;
+      
+    case API_EMPTY: {
+      
+    }
+      break;
+      
+    case API_FRIEND1: {
+      
+    }
+      break;
+      
+    case API_FRIEND2: {
+      
+    }
+      break;
+      
+    case API_FRIEND_INVITE: {
+      
+    }
+      break;
+      
+    default:
+      break;
+  }
+}
+
 
 @end

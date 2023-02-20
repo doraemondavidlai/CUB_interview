@@ -14,4 +14,18 @@ typedef enum {
   UI_OPTIONS_FRIEND_AND_INVITE,
 } UI_OPTIONS;
 
+
+typedef enum {
+  API_MAN,
+  API_EMPTY,
+  API_FRIEND1,
+  API_FRIEND2,
+  API_FRIEND_INVITE,
+} APIs;
+
+typedef enum {
+  APIStatus_SUCCESS,
+  APIStatus_ERROR,
+} APIStatus;
+
 #endif /* DefineHeader_h */
