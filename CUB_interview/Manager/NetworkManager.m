@@ -136,7 +136,8 @@ NS_ASSUME_NONNULL_BEGIN
     }
       break;
       
-    case API_FRIEND1: {
+    case API_FRIEND1:
+    case API_FRIEND2: {
       NSDictionary * apiDict = [responseDict objectForKey:@"apiDict"];
       NSArray * responseArray = [apiDict objectForKey:@"response"];
       
@@ -149,11 +150,6 @@ NS_ASSUME_NONNULL_BEGIN
           [FriendHandler updateFriendWithDict:friendDict];
         });
       }
-    }
-      break;
-      
-    case API_FRIEND2: {
-      
     }
       break;
       

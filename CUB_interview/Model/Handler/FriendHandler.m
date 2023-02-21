@@ -65,15 +65,19 @@ NS_ASSUME_NONNULL_BEGIN
     // update
     Friend * friend = [fetchedObjects objectAtIndex:0];
     
+    NSDate * dbDate = friend.updateDate;
+    NSDate * dictDate = [self stringToDateWithStr:[srcDict objectForKey:@"updateDate"]];
     
-#warning need to compare updateDate then update
-    
+    if (dbDate > dictDate) {
+      // db 資料較新，不儲存
+      return;
+    }
     
     [context performBlockAndWait:^{
       [friend setIsTop:[[srcDict objectForKey:@"isTop"] intValue]];
       [friend setName:[srcDict objectForKey:@"name"]];
       [friend setStatus:[[srcDict objectForKey:@"status"] intValue]];
-      [friend setUpdateDate:[self stringToDateWithStr:[srcDict objectForKey:@"updateDate"]]];
+      [friend setUpdateDate:dictDate];
       [delegate saveContext];
     }];
     
