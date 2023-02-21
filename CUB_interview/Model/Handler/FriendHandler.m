@@ -123,8 +123,6 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (NSDate *) stringToDateWithStr:(NSString *)src {
-  NSString *dateStr = @"20100223";
-
   // Convert string to date object
   NSDateFormatter * dateFormat = [[NSDateFormatter alloc] init];
   
