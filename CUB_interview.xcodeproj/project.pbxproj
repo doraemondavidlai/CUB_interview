@@ -21,6 +21,7 @@
 		B358C2C229A09C690058D329 /* FriendStatusTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B358C2C029A09C690058D329 /* FriendStatusTableViewCell.m */; };
 		B358C2C329A09C690058D329 /* FriendStatusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B358C2C129A09C690058D329 /* FriendStatusTableViewCell.xib */; };
 		B358C2C829A208850058D329 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B358C2C729A208850058D329 /* NetworkManager.m */; };
+		B358C2D029A4CCC10058D329 /* FriendHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B358C2CF29A4CCC10058D329 /* FriendHandler.m */; };
 		B3945635299E11B5003A6F7A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B3945634299E11B5003A6F7A /* AppDelegate.m */; };
 		B3945641299E11B5003A6F7A /* CUB_interview.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B394563F299E11B5003A6F7A /* CUB_interview.xcdatamodeld */; };
 		B3945643299E11B6003A6F7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3945642299E11B6003A6F7A /* Assets.xcassets */; };
@@ -52,6 +53,8 @@
 		B358C2C529A123040058D329 /* DefineHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefineHeader.h; sourceTree = "<group>"; };
 		B358C2C729A208850058D329 /* NetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		B358C2C929A209AD0058D329 /* NetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
+		B358C2CF29A4CCC10058D329 /* FriendHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendHandler.m; sourceTree = "<group>"; };
+		B358C2D129A4CCD30058D329 /* FriendHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendHandler.h; sourceTree = "<group>"; };
 		B3945630299E11B5003A6F7A /* CUB_interview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CUB_interview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3945633299E11B5003A6F7A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B3945634299E11B5003A6F7A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -131,6 +134,24 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
+		B358C2CA29A470210058D329 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B358C2CE29A4CB850058D329 /* Handler */,
+				B394563F299E11B5003A6F7A /* CUB_interview.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B358C2CE29A4CB850058D329 /* Handler */ = {
+			isa = PBXGroup;
+			children = (
+				B358C2D129A4CCD30058D329 /* FriendHandler.h */,
+				B358C2CF29A4CCC10058D329 /* FriendHandler.m */,
+			);
+			path = Handler;
+			sourceTree = "<group>";
+		};
 		B3945627299E11B5003A6F7A = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +173,7 @@
 			children = (
 				B358C286299F75110058D329 /* CustomCell */,
 				B358C2C629A208550058D329 /* Manager */,
+				B358C2CA29A470210058D329 /* Model */,
 				B358C2C429A122CF0058D329 /* SupportFiles */,
 				B358C29F299F83F80058D329 /* TabbarController */,
 				B358C2AA299F868A0058D329 /* ViewControllers */,
@@ -161,7 +183,6 @@
 				B3945644299E11B6003A6F7A /* LaunchScreen.storyboard */,
 				B3945647299E11B6003A6F7A /* Info.plist */,
 				B3945648299E11B6003A6F7A /* main.m */,
-				B394563F299E11B5003A6F7A /* CUB_interview.xcdatamodeld */,
 			);
 			path = CUB_interview;
 			sourceTree = "<group>";
@@ -197,6 +218,7 @@
 				TargetAttributes = {
 					B394562F299E11B5003A6F7A = {
 						CreatedOnToolsVersion = 14.2;
+						LastSwiftMigration = 1420;
 					};
 				};
 			};
@@ -252,6 +274,7 @@
 				B358C29D299F818A0058D329 /* InviteCollectionViewCell.m in Sources */,
 				B358C2B3299F86E10058D329 /* EmptyViewController.m in Sources */,
 				B358C2A9299F85E90058D329 /* TabbarController.m in Sources */,
+				B358C2D029A4CCC10058D329 /* FriendHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +342,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -371,6 +395,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -384,6 +409,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CXJM5PNN5C;
@@ -402,6 +428,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.leo.CUB-interview";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "CUB_interview/CUB_interview-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -411,6 +440,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CXJM5PNN5C;
@@ -429,6 +459,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.leo.CUB-interview";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "CUB_interview/CUB_interview-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

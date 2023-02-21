@@ -10,6 +10,7 @@
 #import "InviteCollectionViewCell.h"
 #import "FriendStatusTableViewCell.h"
 #import "NetworkManager.h"
+#import "FriendHandler.h"
 
 @interface FriendsViewController ()
 
@@ -301,7 +302,6 @@
 - (void)waitForNetworkResponse:(NSNotification *)notification {
   NSDictionary * alteredDataDict = notification.userInfo;
   NSDictionary * responseDict = [alteredDataDict objectForKey:@"response"];
-  NSLog(@"responseDict: %@", responseDict);
   
   switch ([[responseDict objectForKey:@"apiTopic"] intValue]) {
     case API_MAN: {
@@ -333,30 +333,9 @@
     }
       break;
       
-    case API_EMPTY: {
-      
-    }
-      break;
-      
-    case API_FRIEND1: {
-      
-    }
-      break;
-      
-    case API_FRIEND2: {
-      
-    }
-      break;
-      
-    case API_FRIEND_INVITE: {
-      
-    }
-      break;
-      
     default:
       break;
   }
 }
-
 
 @end

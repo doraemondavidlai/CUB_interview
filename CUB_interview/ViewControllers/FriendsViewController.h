@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
   __weak IBOutlet UILabel *setKoKoIdHintLabel;
   
   int uiOption;
-  NSMutableArray * messageTitleArray;
+  NSArray * messageTitleArray;
   NSMutableArray * messageCountArray;
 }
 @end

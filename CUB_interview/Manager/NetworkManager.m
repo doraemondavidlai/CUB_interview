@@ -7,6 +7,7 @@
 
 #import "NetworkManager.h"
 #import "DefineHeader.h"
+#import "FriendHandler.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -22,7 +23,13 @@ NS_ASSUME_NONNULL_BEGIN
     [apiQueue setMaxConcurrentOperationCount:10];
   }
   
+  [self addSingleObserver];
+  
   return self;
+}
+
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"NetworkResponse" object:nil];
 }
 
 + (NetworkManager *) shared {
@@ -30,7 +37,6 @@ NS_ASSUME_NONNULL_BEGIN
   static NetworkManager * sharedInstance;
   dispatch_once(&once, ^{
     sharedInstance = [[super allocWithZone:nil] init];
-    
   });
   return sharedInstance;
 }
@@ -43,6 +49,11 @@ NS_ASSUME_NONNULL_BEGIN
   [exception raise];
   
   return nil;
+}
+
+- (void) addSingleObserver {
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"NetworkResponse" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(waitForNetworkResponse:) name:@"NetworkResponse" object:nil];
 }
 
 - (void) sendResponsePostWithApi:(int)api status:(int)status params:(NSDictionary*)dict {
@@ -110,6 +121,50 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void) fetchFriendAndInviteData {
   [self requestWithURL:@"https://dimanyen.github.io/friend3.json" topic:API_FRIEND_INVITE];
+}
+
+#pragma Network Response
+
+- (void)waitForNetworkResponse:(NSNotification *)notification {
+  NSDictionary * alteredDataDict = notification.userInfo;
+  NSDictionary * responseDict = [alteredDataDict objectForKey:@"response"];
+  NSLog(@"responseDict: %@", responseDict);
+  
+  switch ([[responseDict objectForKey:@"apiTopic"] intValue]) {
+    case API_EMPTY: {
+      // ignore
+    }
+      break;
+      
+    case API_FRIEND1: {
+      NSDictionary * apiDict = [responseDict objectForKey:@"apiDict"];
+      NSArray * responseArray = [apiDict objectForKey:@"response"];
+      
+      if ([responseArray count] < 1) {
+        break;
+      }
+      
+      for (NSDictionary * friendDict in responseArray) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+          [FriendHandler updateFriendWithDict:friendDict];
+        });
+      }
+    }
+      break;
+      
+    case API_FRIEND2: {
+      
+    }
+      break;
+      
+    case API_FRIEND_INVITE: {
+      
+    }
+      break;
+      
+    default:
+      break;
+  }
 }
 
 @end

@@ -8,6 +8,7 @@
 #import "FirstpageViewController.h"
 #import "TabbarController.h"
 #import "DefineHeader.h"
+#import "FriendHandler.h"
 
 @interface FirstpageViewController ()
 
@@ -17,6 +18,7 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  [FriendHandler deleteAllFriend];
 }
 
 - (IBAction)noFriendAction:(id)sender {
