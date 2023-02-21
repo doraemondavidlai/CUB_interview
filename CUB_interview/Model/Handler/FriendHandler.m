@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
   NSMutableArray<Friend *> * friends = [[NSMutableArray alloc] init];
   
   AppDelegate * delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-  NSManagedObjectContext * context = delegate.persistentContainer.viewContext;
+  NSManagedObjectContext * context = delegate.managedObjectContext;
   
   NSFetchRequest * request = [[NSFetchRequest alloc] init];
   NSEntityDescription * entity = [NSEntityDescription entityForName:@"Friend" inManagedObjectContext:context];
@@ -46,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
   }
   
   AppDelegate * delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-  NSManagedObjectContext * context = delegate.persistentContainer.newBackgroundContext;
+  NSManagedObjectContext * context = delegate.managedObjectContext;
   
   NSFetchRequest * request = [[NSFetchRequest alloc] init];
   NSEntityDescription * entity = [NSEntityDescription entityForName:@"Friend" inManagedObjectContext:context];
@@ -65,6 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
     // update
     Friend * friend = [fetchedObjects objectAtIndex:0];
     
+    
 #warning need to compare updateDate then update
     
     
@@ -79,19 +80,12 @@ NS_ASSUME_NONNULL_BEGIN
   } else {
     // insert
     [context performBlockAndWait:^{
-//      Friend * friend = [NSEntityDescription insertNewObjectForEntityForName:@"Friend" inManagedObjectContext:context];
-//      [friend setFid:[srcDict objectForKey:@"fid"]];
-//      [friend setIsTop:[[srcDict objectForKey:@"isTop"] intValue]];
-//      [friend setName:[srcDict objectForKey:@"name"]];
-//      [friend setStatus:[[srcDict objectForKey:@"status"] intValue]];
-//      [friend setUpdateDate:[self stringToDateWithStr:[srcDict objectForKey:@"updateDate"]]];
-      
-      NSManagedObject * friend = [NSEntityDescription insertNewObjectForEntityForName:@"Friend" inManagedObjectContext:context];
-      [friend setValue:[srcDict objectForKey:@"fid"] forKey:@"fid"];
-      [friend setValue:[NSNumber numberWithInt:[[srcDict objectForKey:@"isTop"] intValue]] forKey:@"isTop"];
-      [friend setValue:[srcDict objectForKey:@"name"] forKey:@"name"];
-      [friend setValue:[NSNumber numberWithInt:[[srcDict objectForKey:@"status"] intValue]] forKey:@"status"];
-      [friend setValue:[self stringToDateWithStr:[srcDict objectForKey:@"updateDate"]] forKey:@"updateDate"];
+      Friend * friend = [NSEntityDescription insertNewObjectForEntityForName:@"Friend" inManagedObjectContext:context];
+      [friend setFid:[srcDict objectForKey:@"fid"]];
+      [friend setIsTop:[[srcDict objectForKey:@"isTop"] intValue]];
+      [friend setName:[srcDict objectForKey:@"name"]];
+      [friend setStatus:[[srcDict objectForKey:@"status"] intValue]];
+      [friend setUpdateDate:[self stringToDateWithStr:[srcDict objectForKey:@"updateDate"]]];
       [delegate saveContext];
     }];
   }
@@ -99,7 +93,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void) deleteAllFriend {
   AppDelegate * delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-  NSManagedObjectContext * context = delegate.persistentContainer.viewContext;
+  NSManagedObjectContext * context = delegate.managedObjectContext;
   
   NSFetchRequest * request = [[NSFetchRequest alloc] init];
   NSEntityDescription * entity = [NSEntityDescription entityForName:@"Friend" inManagedObjectContext:context];

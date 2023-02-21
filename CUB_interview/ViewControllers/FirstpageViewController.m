@@ -18,7 +18,10 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  [FriendHandler deleteAllFriend];
+  
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [FriendHandler deleteAllFriend];
+  });
 }
 
 - (IBAction)noFriendAction:(id)sender {

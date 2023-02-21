@@ -13,7 +13,7 @@
 @end
 
 @implementation AppDelegate
-
+@synthesize managedObjectContext = _managedObjectContext;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
@@ -58,6 +58,13 @@
   }
   
   return _persistentContainer;
+}
+
+- (NSManagedObjectContext *)managedObjectContext {
+    if (_managedObjectContext != nil) {
+        return _managedObjectContext;
+    }
+    return self.persistentContainer.viewContext;
 }
 
 #pragma mark - Core Data Saving support
