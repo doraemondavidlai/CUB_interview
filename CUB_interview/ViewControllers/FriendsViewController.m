@@ -275,6 +275,15 @@
   
   [friendCell.nameLabel setText:[NSString stringWithFormat:@"friend %ld", (long)indexPath.row]];
   
+#warning implement
+  if (indexPath.row == 0) {
+    [friendCell setShowStar:NO];
+    [friendCell setIsInviting:YES];
+  } else {
+    [friendCell setShowStar:YES];
+    [friendCell setIsInviting:NO];
+  }
+  
   [friendCell setSelectionStyle:UITableViewCellSelectionStyleNone];
   [friendCell setSeparatorInset:UIEdgeInsetsMake(0, 105, 0, 30)];
   return friendCell;

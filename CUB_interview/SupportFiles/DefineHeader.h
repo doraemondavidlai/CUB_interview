@@ -24,8 +24,8 @@ typedef enum {
 } APIs;
 
 typedef enum {
-  APIStatus_SUCCESS,
   APIStatus_ERROR,
+  APIStatus_SUCCESS,
 } APIStatus;
 
 #endif /* DefineHeader_h */

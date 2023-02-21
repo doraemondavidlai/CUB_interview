@@ -24,14 +24,34 @@
                             <constraint firstAttribute="width" secondItem="jcg-ee-WLt" secondAttribute="height" multiplier="1:1" id="xQd-eV-qkL"/>
                         </constraints>
                     </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icFriendsStar" translatesAutoresizingMaskIntoConstraints="NO" id="TaP-Bx-jrt">
+                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icFriendsStar" translatesAutoresizingMaskIntoConstraints="NO" id="TaP-Bx-jrt">
                         <rect key="frame" x="30" y="23" width="14" height="14"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="1ew-Uk-Khb"/>
                         </constraints>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OxU-Sz-Wfe">
-                        <rect key="frame" x="260" y="0.0" width="60" height="60"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4r-jc-kZt">
+                        <rect key="frame" x="197.33333333333334" y="18" width="35.333333333333343" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="35.329999999999998" id="83d-Fd-qYD"/>
+                            <constraint firstAttribute="height" constant="24" id="YeD-Al-i6D"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" name="ColorHotPink"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWA-ql-sMt">
+                        <rect key="frame" x="257.33333333333331" y="18" width="35.333333333333314" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="Doq-Cl-aIj"/>
+                            <constraint firstAttribute="width" constant="35.329999999999998" id="nUo-9b-7oI"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" name="ColorBrownGray"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OxU-Sz-Wfe">
+                        <rect key="frame" x="245" y="0.0" width="60" height="60"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="gAQ-rA-JFi"/>
                         </constraints>
@@ -39,7 +59,10 @@
                         <buttonConfiguration key="configuration" style="plain" title=" "/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XL7-xI-NbN">
-                        <rect key="frame" x="200" y="0.0" width="60" height="60"/>
+                        <rect key="frame" x="185" y="0.0" width="60" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="zvT-T7-N4N"/>
+                        </constraints>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title=" "/>
                     </button>
@@ -56,16 +79,19 @@
                     <constraint firstItem="TaP-Bx-jrt" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Dk0-AO-zcT"/>
                     <constraint firstItem="XL7-xI-NbN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="OWw-qz-SWn" secondAttribute="trailing" id="KMi-x1-eZt"/>
                     <constraint firstItem="OxU-Sz-Wfe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="OsG-7w-6jn"/>
+                    <constraint firstItem="wWA-ql-sMt" firstAttribute="centerX" secondItem="OxU-Sz-Wfe" secondAttribute="centerX" id="RWX-RH-vIR"/>
+                    <constraint firstItem="c4r-jc-kZt" firstAttribute="centerX" secondItem="XL7-xI-NbN" secondAttribute="centerX" id="SCD-cj-tnn"/>
                     <constraint firstItem="TaP-Bx-jrt" firstAttribute="width" secondItem="TaP-Bx-jrt" secondAttribute="height" multiplier="1:1" id="WQF-wr-cmJ"/>
                     <constraint firstItem="XL7-xI-NbN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="WfS-Ex-Wrq"/>
                     <constraint firstItem="OWw-qz-SWn" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Yaq-Xh-W1n"/>
+                    <constraint firstItem="wWA-ql-sMt" firstAttribute="centerY" secondItem="OxU-Sz-Wfe" secondAttribute="centerY" id="Zkk-xB-3hj"/>
                     <constraint firstAttribute="bottom" secondItem="OxU-Sz-Wfe" secondAttribute="bottom" id="bvz-1y-hru"/>
-                    <constraint firstItem="XL7-xI-NbN" firstAttribute="width" secondItem="XL7-xI-NbN" secondAttribute="height" multiplier="1:1" id="dbB-PX-HAN"/>
                     <constraint firstItem="jcg-ee-WLt" firstAttribute="leading" secondItem="TaP-Bx-jrt" secondAttribute="trailing" constant="6" id="eV7-AE-J9J"/>
-                    <constraint firstAttribute="trailing" secondItem="OxU-Sz-Wfe" secondAttribute="trailing" id="hOP-d4-rUF"/>
+                    <constraint firstAttribute="trailing" secondItem="OxU-Sz-Wfe" secondAttribute="trailing" constant="15" id="hOP-d4-rUF"/>
                     <constraint firstItem="OWw-qz-SWn" firstAttribute="leading" secondItem="jcg-ee-WLt" secondAttribute="trailing" constant="15" id="pH1-Ho-NsL"/>
                     <constraint firstItem="jcg-ee-WLt" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="wU7-Nt-QgH"/>
                     <constraint firstAttribute="bottom" secondItem="XL7-xI-NbN" secondAttribute="bottom" id="y1m-zX-ZbZ"/>
+                    <constraint firstItem="c4r-jc-kZt" firstAttribute="centerY" secondItem="XL7-xI-NbN" secondAttribute="centerY" id="yKd-z7-4Sf"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
@@ -74,7 +100,14 @@
                 <outlet property="nameLabel" destination="OWw-qz-SWn" id="FOD-w4-fQ0"/>
                 <outlet property="starImageView" destination="TaP-Bx-jrt" id="7Qp-uf-CJV"/>
                 <outlet property="subButton" destination="OxU-Sz-Wfe" id="zR2-6N-JdA"/>
+                <outlet property="subButtonTrailingConstraint" destination="hOP-d4-rUF" id="wyG-tD-Aej"/>
+                <outlet property="subButtonWidthConstraint" destination="gAQ-rA-JFi" id="Cnd-GW-psd"/>
+                <outlet property="subLabel" destination="wWA-ql-sMt" id="MGW-tY-5bm"/>
+                <outlet property="subLabelWidthConstraint" destination="nUo-9b-7oI" id="LeW-Ha-X8W"/>
                 <outlet property="transferButton" destination="XL7-xI-NbN" id="UgV-5Z-f5G"/>
+                <outlet property="transferButtonWidthConstraint" destination="zvT-T7-N4N" id="Zff-Jx-YaU"/>
+                <outlet property="transferLabel" destination="c4r-jc-kZt" id="afv-eG-aJD"/>
+                <outlet property="transferLabelWidthConstraint" destination="83d-Fd-qYD" id="6jx-oP-u30"/>
             </connections>
             <point key="canvasLocation" x="131" y="9"/>
         </tableViewCell>
@@ -82,8 +115,14 @@
     <resources>
         <image name="icFriendsStar" width="14" height="14"/>
         <image name="imgFriendsList" width="40" height="40"/>
+        <namedColor name="ColorBrownGray">
+            <color red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="ColorGreyishBrown">
             <color red="0.27843137254901962" green="0.27843137254901962" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorHotPink">
+            <color red="0.92549019607843142" green="0.0" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
