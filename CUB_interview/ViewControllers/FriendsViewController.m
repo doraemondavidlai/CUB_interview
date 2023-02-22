@@ -11,6 +11,7 @@
 #import "FriendStatusTableViewCell.h"
 #import "NetworkManager.h"
 #import "FriendHandler.h"
+#import "FirstpageViewController.h"
 
 @interface FriendsViewController ()
 
@@ -83,7 +84,7 @@
                                                                       imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
                                                                style:UIBarButtonItemStylePlain
                                                               target:self
-                                                              action:nil];
+                                                              action:@selector(backToOptions)];
   UIBarButtonItem * transferItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"icNavPinkTransfer"]
                                                                       imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
                                                                style:UIBarButtonItemStylePlain
@@ -229,6 +230,11 @@
   [searchBar setText:@""];
   [self searchBar:searchBar textDidChange:@""];
   [searchBar resignFirstResponder];
+}
+
+- (void) backToOptions {
+  FirstpageViewController * firstpageVC = [[FirstpageViewController alloc] initWithNibName:@"FirstpageViewController" bundle:nil];
+  [[UIApplication sharedApplication].windows.firstObject setRootViewController:firstpageVC];
 }
 
 #pragma mark - UICollectionView
