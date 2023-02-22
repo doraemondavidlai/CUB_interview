@@ -112,8 +112,6 @@ NS_ASSUME_NONNULL_BEGIN
     NSDate * dbDate = friend.updateDate;
     NSDate * dictDate = [self stringToDateWithStr:[srcDict objectForKey:@"updateDate"]];
     
-    NSLog(@"fid: %@, dbDate %@ (%f) ; dictDate %@ (%f) ", fid, dbDate, dbDate.timeIntervalSince1970, dictDate, dictDate.timeIntervalSince1970);
-    
     if (dbDate.timeIntervalSince1970 > dictDate.timeIntervalSince1970) {
       // db 資料較新，不儲存
       return;
@@ -169,6 +167,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSDate *) stringToDateWithStr:(NSString *)src {
   // Convert string to date object
   NSDateFormatter * dateFormat = [[NSDateFormatter alloc] init];
+  [dateFormat setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
   
   if ([src containsString:@"/"]) {
     [dateFormat setDateFormat:@"yyyy/MM/dd"];

@@ -29,8 +29,12 @@ NS_ASSUME_NONNULL_BEGIN
   __weak IBOutlet UILabel *setKoKoIdHintLabel;
   
   int uiOption;
+  
+  // menu
   NSArray * messageTitleArray;
   NSMutableArray * messageCountArray;
+  
+  // data src
   NSFetchedResultsController * friendFRC;
   NSFetchedResultsController * inviteFRC;
   
@@ -43,6 +47,9 @@ NS_ASSUME_NONNULL_BEGIN
   UISearchBar * searchBar;
   NSMutableArray * searchFriends;
   BOOL isSearching;
+  
+  // pull refresh
+  UIRefreshControl * refreshControl;
 }
 @end
 

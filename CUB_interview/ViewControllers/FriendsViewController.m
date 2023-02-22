@@ -64,9 +64,6 @@
                                                                                  NSFontAttributeName:[UIFont systemFontOfSize:13]}]];
   [setKoKoIdHintLabel setAttributedText:attString];
   
-  flowLayout = [[UICollectionViewFlowLayout alloc] init];
-  stackLayout = [[StackCollectionViewLayout alloc] init];
-  
   [inviteCollectionView registerNib:[UINib nibWithNibName:@"InviteCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"InviteCollectionViewCell"];
   [inviteCollectionView setDataSource:self];
   [inviteCollectionView setDelegate:self];
@@ -89,6 +86,10 @@
   [friendTableView setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
   [friendTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
   
+  refreshControl = [[UIRefreshControl alloc] init];
+  [refreshControl addTarget:self action:@selector(sendAPI) forControlEvents:UIControlEventValueChanged];
+  [friendTableView addSubview:refreshControl];
+  
   searchBar = [[UISearchBar alloc] init];
   [searchBar setPlaceholder:@"想轉一筆給誰呢？"];
   [searchBar setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -96,6 +97,8 @@
   [searchBar.layer setBorderColor:[[UIColor whiteColor] CGColor]];
   [searchBar setDelegate:self];
   
+  flowLayout = [[UICollectionViewFlowLayout alloc] init];
+  stackLayout = [[StackCollectionViewLayout alloc] init];
   isExpand = YES;
   
   uiOption = [[[NSUserDefaults standardUserDefaults] objectForKey:@"uiOption"] intValue];
@@ -427,6 +430,8 @@
 
 #pragma mark - NSFetchedResultsControllerDelegate
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+  [refreshControl endRefreshing];
+  
 //  if ([inviteFRC.fetchedObjects count] < 1) {
   if (uiOption == UI_OPTIONS_ONLY_FRIEND || [inviteFRC.fetchedObjects count] < 1) {
     [inviteCollectionViewHeightConstraint setConstant:0.0];
