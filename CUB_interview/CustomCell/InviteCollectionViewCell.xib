@@ -24,24 +24,24 @@
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="BWu-2l-LnK">
-                        <rect key="frame" x="70" y="18.666666666666668" width="41.333333333333343" height="42.666666666666657"/>
+                        <rect key="frame" x="70" y="21.666666666666671" width="39.666666666666657" height="37"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zfI-wm-dQm">
-                                <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="20.333333333333332"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="0.0" y="0.0" width="39.666666666666664" height="19.333333333333332"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" name="ColorGreyishBrown"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Do-xc-UXp">
-                                <rect key="frame" x="0.0" y="22.333333333333336" width="41.333333333333336" height="20.333333333333336"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="0.0" y="21.333333333333332" width="39.666666666666664" height="15.666666666666668"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" name="ColorBrownGray"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                     </stackView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ykP-ap-B7C">
-                        <rect key="frame" x="324" y="18" width="44" height="44"/>
+                        <rect key="frame" x="317" y="18" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="ykP-ap-B7C" secondAttribute="height" multiplier="1:1" id="EM0-kT-cKb"/>
                             <constraint firstAttribute="height" constant="44" id="R7e-iC-YHn"/>
@@ -50,7 +50,7 @@
                         <buttonConfiguration key="configuration" style="plain" image="btnFriendsDelet"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qbg-Wm-4TL">
-                        <rect key="frame" x="279" y="18" width="44" height="44"/>
+                        <rect key="frame" x="272" y="18" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="qbg-Wm-4TL" secondAttribute="height" multiplier="1:1" id="Irb-g3-XFd"/>
                             <constraint firstAttribute="height" constant="44" id="qxc-R9-zVX"/>
@@ -67,7 +67,7 @@
                 <constraint firstItem="1DW-bJ-zym" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="Y3D-sq-LFo"/>
                 <constraint firstItem="BWu-2l-LnK" firstAttribute="leading" secondItem="1DW-bJ-zym" secondAttribute="trailing" constant="15" id="bdf-qj-e7x"/>
                 <constraint firstItem="ykP-ap-B7C" firstAttribute="leading" secondItem="qbg-Wm-4TL" secondAttribute="trailing" constant="1" id="vDC-kH-dNR"/>
-                <constraint firstAttribute="trailing" secondItem="ykP-ap-B7C" secondAttribute="trailing" constant="1" id="wkg-IG-4bk"/>
+                <constraint firstAttribute="trailing" secondItem="ykP-ap-B7C" secondAttribute="trailing" constant="8" id="wkg-IG-4bk"/>
                 <constraint firstItem="ykP-ap-B7C" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="ywP-HI-fFC"/>
                 <constraint firstItem="qbg-Wm-4TL" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="zEV-FP-04w"/>
             </constraints>

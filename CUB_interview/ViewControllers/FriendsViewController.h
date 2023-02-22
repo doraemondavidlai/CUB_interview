@@ -8,10 +8,11 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "DefineHeader.h"
+#import "StackCollectionViewLayout.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FriendsViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate> {
+@interface FriendsViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate> {
   __weak IBOutlet UILabel *nameLabel;
   __weak IBOutlet UILabel *kokoIdLabel;
   __weak IBOutlet UIButton *setKokoIdButton;
@@ -31,6 +32,12 @@ NS_ASSUME_NONNULL_BEGIN
   NSArray * messageTitleArray;
   NSMutableArray * messageCountArray;
   NSFetchedResultsController * friendFRC;
+  NSFetchedResultsController * inviteFRC;
+  
+  // layout
+  BOOL isExpand;
+  UICollectionViewFlowLayout * flowLayout;
+  StackCollectionViewLayout * stackLayout;
   
   // Search
   UISearchBar * searchBar;

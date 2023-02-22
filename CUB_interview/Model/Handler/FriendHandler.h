@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FriendHandler : NSObject
 + (NSFetchedResultsController *) fetchNormalFriendFRC;
++ (NSFetchedResultsController *) fetchInviteFRC;
 + (NSMutableArray<Friend *> *) fetchAllFriends;
 + (void) updateFriendWithDict:(NSDictionary *)srcDict;
 + (void) deleteAllFriend;

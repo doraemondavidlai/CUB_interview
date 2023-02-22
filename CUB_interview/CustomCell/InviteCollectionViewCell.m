@@ -11,7 +11,8 @@
 
 - (void)awakeFromNib {
   [super awakeFromNib];
-  // Initialization code
+  
+  [_subTitleLable setText:@"邀請你成為好友：）"];
 }
 
 @end

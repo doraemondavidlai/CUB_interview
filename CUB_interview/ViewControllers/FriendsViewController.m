@@ -29,7 +29,6 @@
   messageTitleArray = [NSArray arrayWithObjects:@"好友", @"聊天", nil];
   messageCountArray = [[NSMutableArray alloc] init];
   
-  
   [noticeView.layer setCornerRadius:5.0];
   [noticeView.layer setMasksToBounds:YES];
   [noticeView.layer setBorderWidth:0];
@@ -65,10 +64,15 @@
                                                                                  NSFontAttributeName:[UIFont systemFontOfSize:13]}]];
   [setKoKoIdHintLabel setAttributedText:attString];
   
+  flowLayout = [[UICollectionViewFlowLayout alloc] init];
+  stackLayout = [[StackCollectionViewLayout alloc] init];
+  
   [inviteCollectionView registerNib:[UINib nibWithNibName:@"InviteCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"InviteCollectionViewCell"];
   [inviteCollectionView setDataSource:self];
   [inviteCollectionView setDelegate:self];
   [inviteCollectionView setBackgroundColor:[UIColor colorNamed:@"ColorSilver"]];
+  [inviteCollectionView setScrollEnabled:NO];
+  [inviteCollectionView setShowsVerticalScrollIndicator:NO];
   
   [menuCollectionView registerNib:[UINib nibWithNibName:@"MenuCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"MenuCollectionViewCell"];
   [menuCollectionView setDataSource:self];
@@ -92,11 +96,16 @@
   [searchBar.layer setBorderColor:[[UIColor whiteColor] CGColor]];
   [searchBar setDelegate:self];
   
+  isExpand = YES;
+  
   uiOption = [[[NSUserDefaults standardUserDefaults] objectForKey:@"uiOption"] intValue];
   NSLog(@"ui option: %d", uiOption);
   
   friendFRC = [FriendHandler fetchNormalFriendFRC];
   [friendFRC setDelegate:self];
+  
+  inviteFRC = [FriendHandler fetchInviteFRC];
+  [inviteFRC setDelegate:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -174,7 +183,19 @@
   [self.navigationItem setRightBarButtonItem:scanItem];
 }
 
-#pragma UICollectionView
+- (void) updateInviteCollectionViewHeight {
+  CGFloat height = 40.0;
+  
+  if (isExpand) {
+    height = height + [inviteFRC.fetchedObjects count] * 70.0 + ([inviteFRC.fetchedObjects count] > 1 ? ([inviteFRC.fetchedObjects count] - 1) * 10.0 : 0.0);
+  } else {
+    height = height + 100.0;
+  }
+  
+  [inviteCollectionViewHeightConstraint setConstant:height];
+}
+
+#pragma mark - UICollectionView
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
   if ([collectionView isEqual:menuCollectionView]) {
     MenuCollectionViewCell * menuCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MenuCollectionViewCell" forIndexPath:indexPath];
@@ -191,14 +212,37 @@
   }
   
   if ([collectionView isEqual:inviteCollectionView]) {
-#warning implement
     InviteCollectionViewCell * inviteCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"InviteCollectionViewCell" forIndexPath:indexPath];
+    [inviteCell setBackgroundColor:[UIColor whiteColor]];
     
+    Friend * friend = [inviteFRC.fetchedObjects objectAtIndex:indexPath.row];
+    [inviteCell.nameLabel setText:friend.name];
     
+    [inviteCell.layer setCornerRadius:6.0];
+    [inviteCell.layer setBorderWidth:0];
+    [inviteCell.layer setMasksToBounds:YES];
+    [inviteCell.layer setMasksToBounds:NO];
+    [inviteCell.layer setShadowColor:[UIColor blackColor].CGColor];
+    [inviteCell.layer setShadowOffset:CGSizeMake(0.0, 4.0)];
+    [inviteCell.layer setShadowOpacity:0.1];
+    [inviteCell.layer setShadowRadius:8.0];
     return inviteCell;
   }
   
   return UICollectionViewCell.new;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+  if ([collectionView isEqual:inviteCollectionView]) {
+    isExpand = !isExpand;
+    
+    [inviteCollectionView.collectionViewLayout invalidateLayout];
+    UICollectionViewLayout * newLayout = isExpand ? flowLayout : stackLayout;
+    [inviteCollectionView setCollectionViewLayout:newLayout];
+    [self updateInviteCollectionViewHeight];
+  }
+  
+  return;
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -207,12 +251,10 @@
   }
   
   if ([collectionView isEqual:inviteCollectionView]) {
-#warning implement
-    return 0;
+    return [inviteFRC.fetchedObjects count];
   }
   
   return 0;
-  
 }
 
 
@@ -222,8 +264,7 @@
   }
   
   if ([collectionView isEqual:inviteCollectionView]) {
-#warning implement
-    return UIEdgeInsetsMake(0, 10, 0, 10);
+    return UIEdgeInsetsMake(25, 0, 15, 0);
   }
   
   return UIEdgeInsetsMake(0, 0, 0, 0);
@@ -247,8 +288,8 @@
   }
   
   if ([collectionView isEqual:inviteCollectionView]) {
-#warning implement
-    return CGSizeMake(20.0, 50.0);
+    return CGSizeMake([UIScreen mainScreen].bounds.size.width - 60.0,
+                      70.0);
   }
   
   return CGSizeMake(0.0, 0.0);
@@ -260,8 +301,7 @@
   }
   
   if ([collectionView isEqual:inviteCollectionView]) {
-#warning implement
-    return 20.0;
+    return 10.0;
   }
   
   return 0;
@@ -273,21 +313,17 @@
   }
 
   if ([collectionView isEqual:inviteCollectionView]) {
-#warning implement
-    return 20.0;
+    return 10.0;
   }
 
   return 0;
 }
 
-
-#pragma UITableView
-
+#pragma mark - UITableView
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
   FriendStatusTableViewCell * friendCell = [tableView dequeueReusableCellWithIdentifier:@"FriendStatusTableViewCell"];
   
   Friend * friend = isSearching ? [searchFriends objectAtIndex:indexPath.row] : [friendFRC.fetchedObjects objectAtIndex:indexPath.row];
-  NSLog(@"%ld %@", (long)indexPath.row, friend);
   [friendCell.nameLabel setText:friend.name];
   [friendCell setShowStar:(friend.isTop == 1)];
   [friendCell setIsInviting:(friend.status == 2)];
@@ -327,9 +363,9 @@
     [NSLayoutConstraint constraintWithItem:searchBar attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:sectionHeaderView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0],
     [NSLayoutConstraint constraintWithItem:searchBar attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:sectionHeaderView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0],
     [NSLayoutConstraint constraintWithItem:searchBar attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:sectionHeaderView attribute:NSLayoutAttributeLeading multiplier:1.0 constant:20.0],
-    [NSLayoutConstraint constraintWithItem:searchBar attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:sectionHeaderView attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:-70.0],
-    [NSLayoutConstraint constraintWithItem:addFriendButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:sectionHeaderView attribute:NSLayoutAttributeTop multiplier:1.0 constant:10.0],
-    [NSLayoutConstraint constraintWithItem:addFriendButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:sectionHeaderView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-10.0],
+    [NSLayoutConstraint constraintWithItem:searchBar attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:sectionHeaderView attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:-60.0],
+    [NSLayoutConstraint constraintWithItem:addFriendButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:sectionHeaderView attribute:NSLayoutAttributeTop multiplier:1.0 constant:5.0],
+    [NSLayoutConstraint constraintWithItem:addFriendButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:sectionHeaderView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-5.0],
     [NSLayoutConstraint constraintWithItem:addFriendButton attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:sectionHeaderView attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:-15.0],
     [NSLayoutConstraint constraintWithItem:addFriendButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:50.0],
     [NSLayoutConstraint constraintWithItem:addFriendButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:50.0]
@@ -338,7 +374,7 @@
   return sectionHeaderView;
 }
 
-#pragma Network
+#pragma mark - Network
 - (void)waitForNetworkResponse:(NSNotification *)notification {
   NSDictionary * alteredDataDict = notification.userInfo;
   NSDictionary * responseDict = [alteredDataDict objectForKey:@"response"];
@@ -378,12 +414,20 @@
   }
 }
 
-#pragma NSFetchedResultsControllerDelegate
+#pragma mark - NSFetchedResultsControllerDelegate
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+//  if ([inviteFRC.fetchedObjects count] < 1) {
+  if (uiOption == UI_OPTIONS_ONLY_FRIEND || [inviteFRC.fetchedObjects count] < 1) {
+    [inviteCollectionViewHeightConstraint setConstant:0.0];
+  } else {
+    [self updateInviteCollectionViewHeight];
+    [inviteCollectionView reloadData];
+  }
+  
   [friendTableView reloadData];
 }
 
-#pragma UISearchBarDelegate
+#pragma mark - UISearchBarDelegate
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
   if (searchBar.text == nil || [searchBar.text isEqualToString:@""]) {
     isSearching = false;

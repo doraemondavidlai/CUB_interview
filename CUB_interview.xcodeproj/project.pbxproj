@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B3131CC929A5E8BB00765765 /* StackCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B3131CC829A5E8BB00765765 /* StackCollectionViewLayout.m */; };
 		B358C29D299F818A0058D329 /* InviteCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B358C29B299F818A0058D329 /* InviteCollectionViewCell.m */; };
 		B358C29E299F818A0058D329 /* InviteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B358C29C299F818A0058D329 /* InviteCollectionViewCell.xib */; };
 		B358C2A9299F85E90058D329 /* TabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B358C2A8299F85E90058D329 /* TabbarController.m */; };
@@ -30,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B3131CC829A5E8BB00765765 /* StackCollectionViewLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StackCollectionViewLayout.m; sourceTree = "<group>"; };
+		B3131CCA29A5E8C600765765 /* StackCollectionViewLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StackCollectionViewLayout.h; sourceTree = "<group>"; };
 		B358C29A299F818A0058D329 /* InviteCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InviteCollectionViewCell.h; sourceTree = "<group>"; };
 		B358C29B299F818A0058D329 /* InviteCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InviteCollectionViewCell.m; sourceTree = "<group>"; };
 		B358C29C299F818A0058D329 /* InviteCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InviteCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -121,6 +124,8 @@
 			isa = PBXGroup;
 			children = (
 				B358C2C529A123040058D329 /* DefineHeader.h */,
+				B3131CCA29A5E8C600765765 /* StackCollectionViewLayout.h */,
+				B3131CC829A5E8BB00765765 /* StackCollectionViewLayout.m */,
 			);
 			path = SupportFiles;
 			sourceTree = "<group>";
@@ -267,6 +272,7 @@
 				B358C2BD29A059300058D329 /* MenuCollectionViewCell.m in Sources */,
 				B3945649299E11B6003A6F7A /* main.m in Sources */,
 				B358C2C829A208850058D329 /* NetworkManager.m in Sources */,
+				B3131CC929A5E8BB00765765 /* StackCollectionViewLayout.m in Sources */,
 				B3945641299E11B5003A6F7A /* CUB_interview.xcdatamodeld in Sources */,
 				B358C2AE299F86AA0058D329 /* FriendsViewController.m in Sources */,
 				B358C2B8299FC40F0058D329 /* FirstpageViewController.m in Sources */,

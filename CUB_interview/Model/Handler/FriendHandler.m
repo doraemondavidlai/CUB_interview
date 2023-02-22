@@ -13,8 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation FriendHandler
 
 + (NSFetchedResultsController *) fetchNormalFriendFRC {
-  NSMutableArray<Friend *> * friends = [[NSMutableArray alloc] init];
-  
   AppDelegate * delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
   NSManagedObjectContext * context = delegate.managedObjectContext;
   
@@ -22,6 +20,28 @@ NS_ASSUME_NONNULL_BEGIN
   NSEntityDescription * entity = [NSEntityDescription entityForName:@"Friend" inManagedObjectContext:context];
   [request setEntity:entity];
   [request setPredicate:[NSPredicate predicateWithFormat:@"status != 0"]];
+  [request setSortDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"fid" ascending:YES]]];
+  
+  NSFetchedResultsController * frc = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:context sectionNameKeyPath:nil cacheName:nil];
+  
+  NSError * error;
+  [frc performFetch:&error];
+  
+  if (error != nil) {
+    [NSException raise:@"NSFetchedResultsController Error" format:@"Check PerformFetch error"];
+  }
+  
+  return frc;
+}
+
++ (NSFetchedResultsController *) fetchInviteFRC {
+  AppDelegate * delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+  NSManagedObjectContext * context = delegate.managedObjectContext;
+  
+  NSFetchRequest * request = [[NSFetchRequest alloc] init];
+  NSEntityDescription * entity = [NSEntityDescription entityForName:@"Friend" inManagedObjectContext:context];
+  [request setEntity:entity];
+  [request setPredicate:[NSPredicate predicateWithFormat:@"status == 0"]];
   [request setSortDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"fid" ascending:YES]]];
   
   NSFetchedResultsController * frc = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:context sectionNameKeyPath:nil cacheName:nil];
@@ -92,7 +112,9 @@ NS_ASSUME_NONNULL_BEGIN
     NSDate * dbDate = friend.updateDate;
     NSDate * dictDate = [self stringToDateWithStr:[srcDict objectForKey:@"updateDate"]];
     
-    if (dbDate > dictDate) {
+    NSLog(@"fid: %@, dbDate %@ (%f) ; dictDate %@ (%f) ", fid, dbDate, dbDate.timeIntervalSince1970, dictDate, dictDate.timeIntervalSince1970);
+    
+    if (dbDate.timeIntervalSince1970 > dictDate.timeIntervalSince1970) {
       // db 資料較新，不儲存
       return;
     }
