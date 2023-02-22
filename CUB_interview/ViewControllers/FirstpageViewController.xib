@@ -71,11 +71,19 @@
                         </button>
                     </subviews>
                 </stackView>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2023/02/22 賴永峰撰寫" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ecs-WM-lGU">
+                    <rect key="frame" x="192.33333333333337" y="777.66666666666663" width="180.66666666666663" height="20.333333333333371"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="ecs-WM-lGU" secondAttribute="bottom" constant="20" id="9QL-cl-aTc"/>
                 <constraint firstItem="9Pf-7y-nkx" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.75" id="Byu-5X-UKs"/>
+                <constraint firstAttribute="trailing" secondItem="ecs-WM-lGU" secondAttribute="trailing" constant="20" id="Kye-yN-WBU"/>
                 <constraint firstItem="9Pf-7y-nkx" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="ZJM-5p-4Kp"/>
                 <constraint firstItem="9Pf-7y-nkx" firstAttribute="centerY" secondItem="Q5M-cg-NOt" secondAttribute="centerY" multiplier="0.8" id="b9g-am-lFL"/>
             </constraints>
