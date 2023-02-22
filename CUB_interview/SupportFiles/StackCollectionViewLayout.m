@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
   UICollectionViewLayoutAttributes * attr = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
   [attr setSize:CGSizeMake([UIScreen mainScreen].bounds.size.width - 60.0 - (indexPath.row == 0 ? 0.0 : 20.0), 70.0)];
   [attr setCenter:CGPointMake(self.collectionView.bounds.size.width / 2,
-                              self.collectionView.bounds.size.height / 2 - 10 + (indexPath.row == 0 ? 0.0 : 10.0))];
+                              60.0 + (indexPath.row == 0 ? 0.0 : 10.0))];
   attr.zIndex = [self.collectionView numberOfItemsInSection:0] - indexPath.item;
   return attr;
 }

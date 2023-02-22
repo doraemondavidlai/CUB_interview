@@ -189,7 +189,7 @@
   if (isExpand) {
     height = height + [inviteFRC.fetchedObjects count] * 70.0 + ([inviteFRC.fetchedObjects count] > 1 ? ([inviteFRC.fetchedObjects count] - 1) * 10.0 : 0.0);
   } else {
-    height = height + 100.0;
+    height = height + ([inviteFRC.fetchedObjects count] > 1 ? 85.0 : 70.0);
   }
   
   [inviteCollectionViewHeightConstraint setConstant:height];
