@@ -18,11 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
   __weak IBOutlet UIButton *setKokoIdButton;
   __weak IBOutlet UIView *noticeView;
   __weak IBOutlet UICollectionView *inviteCollectionView;
-  __weak IBOutlet UICollectionViewFlowLayout *inviteCollectionViewFlowLayout;
   __weak IBOutlet NSLayoutConstraint *inviteCollectionViewHeightConstraint;
   __weak IBOutlet UICollectionView *menuCollectionView;
   __weak IBOutlet UICollectionViewFlowLayout *menuCollectionViewFlowLayout;
-  __weak IBOutlet NSLayoutConstraint *menuCollectionViewHeightConstrraint;
   __weak IBOutlet UITableView *friendTableView;
   __weak IBOutlet NSLayoutConstraint *friendTableViewTopConstraint;
   __weak IBOutlet UIView *emptyView;

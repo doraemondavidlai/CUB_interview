@@ -17,12 +17,10 @@
                 <outlet property="friendTableView" destination="oI2-QC-DyH" id="Egf-fO-HOd"/>
                 <outlet property="friendTableViewTopConstraint" destination="Ezx-bM-pNX" id="5hs-Z6-h7y"/>
                 <outlet property="inviteCollectionView" destination="Y2H-mD-ObY" id="33X-Zy-d9L"/>
-                <outlet property="inviteCollectionViewFlowLayout" destination="LSU-dc-kY6" id="lbE-kU-fkO"/>
                 <outlet property="inviteCollectionViewHeightConstraint" destination="IRK-94-hSI" id="LPc-AJ-ALc"/>
                 <outlet property="kokoIdLabel" destination="ynG-he-amo" id="PGi-Jy-2J4"/>
                 <outlet property="menuCollectionView" destination="e0V-KP-cYN" id="6bU-A0-Vbd"/>
                 <outlet property="menuCollectionViewFlowLayout" destination="cfk-NA-qc0" id="Mvb-dX-CJM"/>
-                <outlet property="menuCollectionViewHeightConstrraint" destination="tdD-bj-tFb" id="8Vk-7T-6md"/>
                 <outlet property="nameLabel" destination="D8b-jH-Rwg" id="IFY-53-CRg"/>
                 <outlet property="noticeView" destination="15K-V9-UzK" id="alG-FH-ewy"/>
                 <outlet property="setKoKoIdHintLabel" destination="EFf-uM-yQa" id="VYp-Xk-O7N"/>
