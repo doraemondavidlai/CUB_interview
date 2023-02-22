@@ -112,47 +112,32 @@
   [super viewWillAppear:animated];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(waitForNetworkResponse:) name:@"NetworkResponse" object:nil];
   
+  [nameLabel setText:@""];
+  [kokoIdLabel setText:@"KOKO ID："];
+  
   switch (uiOption) {
     case UI_OPTIONS_NO_FRIEND: {
-      [nameLabel setText:@"紫晽"];
-      [kokoIdLabel setText:@"設定 KOKO ID"];
       [noticeView setHidden:NO];
-      [emptyView setHidden:NO];
       messageCountArray = [NSMutableArray arrayWithObjects:@"0", @"0", nil];
-      
-      [[NetworkManager shared] fetchManData];
-      [[NetworkManager shared] fetchEmptyData];
     }
       break;
       
     case UI_OPTIONS_ONLY_FRIEND: {
-      [nameLabel setText:@"紫晽"];
-      [kokoIdLabel setText:@"KOKO ID：olylinhuang"];
       [noticeView setHidden:YES];
-      [emptyView setHidden:YES];
       messageCountArray = [NSMutableArray arrayWithObjects:@"0", @"99+", nil];
-      
-      [[NetworkManager shared] fetchManData];
-      [[NetworkManager shared] fetchFriend1Data];
-      [[NetworkManager shared] fetchFriend2Data];
     }
       break;
       
     case UI_OPTIONS_FRIEND_AND_INVITE: {
-      [nameLabel setText:@"紫晽"];
-      [kokoIdLabel setText:@"KOKO ID：olylinhuang"];
       [noticeView setHidden:YES];
-      [emptyView setHidden:YES];
-      messageCountArray = [NSMutableArray arrayWithObjects:@"2", @"99+", nil];
-      
-      [[NetworkManager shared] fetchManData];
-      [[NetworkManager shared] fetchFriendAndInviteData];
+      messageCountArray = [NSMutableArray arrayWithObjects:@"0", @"99+", nil];
     }
       break;
       
     default:
       break;
   }
+  [self sendAPI];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -181,6 +166,32 @@
                                                                action:nil];
   
   [self.navigationItem setRightBarButtonItem:scanItem];
+}
+
+- (void) sendAPI {
+  switch (uiOption) {
+    case UI_OPTIONS_NO_FRIEND: {
+      [[NetworkManager shared] fetchManData];
+      [[NetworkManager shared] fetchEmptyData];
+    }
+      break;
+      
+    case UI_OPTIONS_ONLY_FRIEND: {
+      [[NetworkManager shared] fetchManData];
+      [[NetworkManager shared] fetchFriend1Data];
+      [[NetworkManager shared] fetchFriend2Data];
+    }
+      break;
+      
+    case UI_OPTIONS_FRIEND_AND_INVITE: {
+      [[NetworkManager shared] fetchManData];
+      [[NetworkManager shared] fetchFriendAndInviteData];
+    }
+      break;
+      
+    default:
+      break;
+  }
 }
 
 - (void) updateInviteCollectionViewHeight {
@@ -424,6 +435,19 @@
     [inviteCollectionView reloadData];
   }
   
+  int friendCount = 0;
+  
+  for (Friend * friend in friendFRC.fetchedObjects) {
+    if (friend.status == 2) {
+      friendCount++;
+    }
+  }
+  
+  [messageCountArray replaceObjectAtIndex:0 withObject:[NSString stringWithFormat:@"%d", friendCount]];
+  [menuCollectionView reloadData];
+  
+  [emptyView setHidden:[friendFRC.fetchedObjects count] > 0];
+  [friendTableView setHidden:[friendFRC.fetchedObjects count] < 1];
   [friendTableView reloadData];
 }
 
