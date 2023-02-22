@@ -131,13 +131,10 @@ NS_ASSUME_NONNULL_BEGIN
   NSLog(@"responseDict: %@", responseDict);
   
   switch ([[responseDict objectForKey:@"apiTopic"] intValue]) {
-    case API_EMPTY: {
-      // ignore
-    }
-      break;
-      
+    case API_EMPTY:
     case API_FRIEND1:
-    case API_FRIEND2: {
+    case API_FRIEND2:
+    case API_FRIEND_INVITE: {
       NSDictionary * apiDict = [responseDict objectForKey:@"apiDict"];
       NSArray * responseArray = [apiDict objectForKey:@"response"];
       
@@ -150,11 +147,6 @@ NS_ASSUME_NONNULL_BEGIN
           [FriendHandler updateFriendWithDict:friendDict];
         });
       }
-    }
-      break;
-      
-    case API_FRIEND_INVITE: {
-      
     }
       break;
       

@@ -12,6 +12,30 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation FriendHandler
 
++ (NSFetchedResultsController *) fetchNormalFriendFRC {
+  NSMutableArray<Friend *> * friends = [[NSMutableArray alloc] init];
+  
+  AppDelegate * delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+  NSManagedObjectContext * context = delegate.managedObjectContext;
+  
+  NSFetchRequest * request = [[NSFetchRequest alloc] init];
+  NSEntityDescription * entity = [NSEntityDescription entityForName:@"Friend" inManagedObjectContext:context];
+  [request setEntity:entity];
+  [request setPredicate:[NSPredicate predicateWithFormat:@"status != 0"]];
+  [request setSortDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"fid" ascending:YES]]];
+  
+  NSFetchedResultsController * frc = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:context sectionNameKeyPath:nil cacheName:nil];
+  
+  NSError * error;
+  [frc performFetch:&error];
+  
+  if (error != nil) {
+    [NSException raise:@"NSFetchedResultsController Error" format:@"Check PerformFetch error"];
+  }
+  
+  return frc;
+}
+
 + (NSMutableArray<Friend *> *) fetchAllFriends {
   NSMutableArray<Friend *> * friends = [[NSMutableArray alloc] init];
   

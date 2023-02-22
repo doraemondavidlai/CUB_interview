@@ -6,11 +6,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 #import "DefineHeader.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FriendsViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate> {
+@interface FriendsViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate> {
   __weak IBOutlet UILabel *nameLabel;
   __weak IBOutlet UILabel *kokoIdLabel;
   __weak IBOutlet UIButton *setKokoIdButton;
@@ -29,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
   int uiOption;
   NSArray * messageTitleArray;
   NSMutableArray * messageCountArray;
+  NSFetchedResultsController * friendFRC;
 }
 @end
 

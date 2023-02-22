@@ -85,6 +85,9 @@
   
   uiOption = [[[NSUserDefaults standardUserDefaults] objectForKey:@"uiOption"] intValue];
   NSLog(@"ui option: %d", uiOption);
+  
+  friendFRC = [FriendHandler fetchNormalFriendFRC];
+  [friendFRC setDelegate:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -274,16 +277,11 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
   FriendStatusTableViewCell * friendCell = [tableView dequeueReusableCellWithIdentifier:@"FriendStatusTableViewCell"];
   
-  [friendCell.nameLabel setText:[NSString stringWithFormat:@"friend %ld", (long)indexPath.row]];
-  
-#warning implement
-  if (indexPath.row == 0) {
-    [friendCell setShowStar:NO];
-    [friendCell setIsInviting:YES];
-  } else {
-    [friendCell setShowStar:YES];
-    [friendCell setIsInviting:NO];
-  }
+  Friend * friend = [friendFRC.fetchedObjects objectAtIndex:indexPath.row];
+  NSLog(@"%ld %@", (long)indexPath.row, friend);
+  [friendCell.nameLabel setText:friend.name];
+  [friendCell setShowStar:(friend.isTop == 1)];
+  [friendCell setIsInviting:(friend.status == 2)];
   
   [friendCell setSelectionStyle:UITableViewCellSelectionStyleNone];
   [friendCell setSeparatorInset:UIEdgeInsetsMake(0, 105, 0, 30)];
@@ -291,7 +289,7 @@
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return 2;
+  return [friendFRC.fetchedObjects count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -336,6 +334,11 @@
     default:
       break;
   }
+}
+
+#pragma NSFetchedResultsControllerDelegate
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+  [friendTableView reloadData];
 }
 
 @end
