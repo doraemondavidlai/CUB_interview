@@ -25,10 +25,83 @@
   [self.navigationController.navigationBar setTintColor:[UIColor colorNamed:@"ColorHotPink"]];
   
   [self setNavigationItems];
-
+  [self prepareUIComponenet];
+  
   messageTitleArray = [NSArray arrayWithObjects:@"好友", @"聊天", nil];
   messageCountArray = [[NSMutableArray alloc] init];
+  isExpand = YES;
   
+  uiOption = [[[NSUserDefaults standardUserDefaults] objectForKey:@"uiOption"] intValue];
+  
+  friendFRC = [FriendHandler fetchNormalFriendFRC];
+  [friendFRC setDelegate:self];
+  
+  inviteFRC = [FriendHandler fetchInviteFRC];
+  [inviteFRC setDelegate:self];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(waitForNetworkResponse:) name:@"NetworkResponse" object:nil];
+  
+  [nameLabel setText:@""];
+  [kokoIdLabel setText:@"KOKO ID："];
+  
+  switch (uiOption) {
+    case UI_OPTIONS_NO_FRIEND: {
+      [noticeView setHidden:NO];
+      messageCountArray = [NSMutableArray arrayWithObjects:@"0", @"0", nil];
+    }
+      break;
+      
+    case UI_OPTIONS_ONLY_FRIEND: {
+      [noticeView setHidden:YES];
+      messageCountArray = [NSMutableArray arrayWithObjects:@"0", @"99+", nil];
+    }
+      break;
+      
+    case UI_OPTIONS_FRIEND_AND_INVITE: {
+      [noticeView setHidden:YES];
+      messageCountArray = [NSMutableArray arrayWithObjects:@"0", @"99+", nil];
+    }
+      break;
+      
+    default:
+      break;
+  }
+  [self sendAPI];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [self exitSearch];
+}
+
+-(void) setNavigationItems {
+  UIBarButtonItem * atmItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"icNavPinkWithdraw"]
+                                                                      imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+                                                               style:UIBarButtonItemStylePlain
+                                                              target:self
+                                                              action:nil];
+  UIBarButtonItem * transferItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"icNavPinkTransfer"]
+                                                                      imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+                                                               style:UIBarButtonItemStylePlain
+                                                              target:self
+                                                              action:nil];
+  
+  [self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects:atmItem, transferItem, nil]];
+  
+  UIBarButtonItem * scanItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"icNavPinkScan"]
+                                                                       imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+                                                                style:UIBarButtonItemStylePlain
+                                                               target:self
+                                                               action:nil];
+  
+  [self.navigationItem setRightBarButtonItem:scanItem];
+}
+
+- (void) prepareUIComponenet {
   [noticeView.layer setCornerRadius:5.0];
   [noticeView.layer setMasksToBounds:YES];
   [noticeView.layer setBorderWidth:0];
@@ -99,81 +172,10 @@
     
   flowLayout = [[UICollectionViewFlowLayout alloc] init];
   stackLayout = [[StackCollectionViewLayout alloc] init];
-  isExpand = YES;
-  
-  uiOption = [[[NSUserDefaults standardUserDefaults] objectForKey:@"uiOption"] intValue];
-  NSLog(@"ui option: %d", uiOption);
-  
-  friendFRC = [FriendHandler fetchNormalFriendFRC];
-  [friendFRC setDelegate:self];
-  
-  inviteFRC = [FriendHandler fetchInviteFRC];
-  [inviteFRC setDelegate:self];
   
   [blockView setBackgroundColor:[UIColor clearColor]];
   [blockView setHidden:YES];
   [blockView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(exitSearch)]];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-  [super viewWillAppear:animated];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(waitForNetworkResponse:) name:@"NetworkResponse" object:nil];
-  
-  [nameLabel setText:@""];
-  [kokoIdLabel setText:@"KOKO ID："];
-  
-  switch (uiOption) {
-    case UI_OPTIONS_NO_FRIEND: {
-      [noticeView setHidden:NO];
-      messageCountArray = [NSMutableArray arrayWithObjects:@"0", @"0", nil];
-    }
-      break;
-      
-    case UI_OPTIONS_ONLY_FRIEND: {
-      [noticeView setHidden:YES];
-      messageCountArray = [NSMutableArray arrayWithObjects:@"0", @"99+", nil];
-    }
-      break;
-      
-    case UI_OPTIONS_FRIEND_AND_INVITE: {
-      [noticeView setHidden:YES];
-      messageCountArray = [NSMutableArray arrayWithObjects:@"0", @"99+", nil];
-    }
-      break;
-      
-    default:
-      break;
-  }
-  [self sendAPI];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-  [super viewWillDisappear:animated];
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
-  [self exitSearch];
-}
-
--(void) setNavigationItems {
-  UIBarButtonItem * atmItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"icNavPinkWithdraw"]
-                                                                      imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
-                                                               style:UIBarButtonItemStylePlain
-                                                              target:self
-                                                              action:nil];
-  UIBarButtonItem * transferItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"icNavPinkTransfer"]
-                                                                      imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
-                                                               style:UIBarButtonItemStylePlain
-                                                              target:self
-                                                              action:nil];
-  
-  [self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects:atmItem, transferItem, nil]];
-  
-  UIBarButtonItem * scanItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"icNavPinkScan"]
-                                                                       imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
-                                                                style:UIBarButtonItemStylePlain
-                                                               target:self
-                                                               action:nil];
-  
-  [self.navigationItem setRightBarButtonItem:scanItem];
 }
 
 - (void) sendAPI {
@@ -439,6 +441,10 @@
             [self->kokoIdLabel setText:[NSString stringWithFormat:@"KOKO ID：%@", kokoid]];
           });
         }
+      } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+          [self->kokoIdLabel setText:@"設定 KOKO ID"];
+        });
       }
     }
       break;
