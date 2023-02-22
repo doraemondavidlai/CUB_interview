@@ -24,9 +24,11 @@ NS_ASSUME_NONNULL_BEGIN
   __weak IBOutlet UICollectionViewFlowLayout *menuCollectionViewFlowLayout;
   __weak IBOutlet NSLayoutConstraint *menuCollectionViewHeightConstrraint;
   __weak IBOutlet UITableView *friendTableView;
+  __weak IBOutlet NSLayoutConstraint *friendTableViewTopConstraint;
   __weak IBOutlet UIView *emptyView;
   __weak IBOutlet UIButton *addFriendButton;
   __weak IBOutlet UILabel *setKoKoIdHintLabel;
+  __weak IBOutlet UIView *blockView;
   
   int uiOption;
   
@@ -50,6 +52,9 @@ NS_ASSUME_NONNULL_BEGIN
   
   // pull refresh
   UIRefreshControl * refreshControl;
+  
+  // search pull distance
+  CGFloat tableViewPullUpDistance;
 }
 @end
 

@@ -96,7 +96,7 @@
   [searchBar.layer setBorderWidth:1.0];
   [searchBar.layer setBorderColor:[[UIColor whiteColor] CGColor]];
   [searchBar setDelegate:self];
-  
+    
   flowLayout = [[UICollectionViewFlowLayout alloc] init];
   stackLayout = [[StackCollectionViewLayout alloc] init];
   isExpand = YES;
@@ -109,6 +109,10 @@
   
   inviteFRC = [FriendHandler fetchInviteFRC];
   [inviteFRC setDelegate:self];
+  
+  [blockView setBackgroundColor:[UIColor clearColor]];
+  [blockView setHidden:YES];
+  [blockView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(exitSearch)]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -146,6 +150,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
   [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [self exitSearch];
 }
 
 -(void) setNavigationItems {
@@ -198,15 +203,30 @@
 }
 
 - (void) updateInviteCollectionViewHeight {
-  CGFloat height = 40.0;
-  
-  if (isExpand) {
-    height = height + [inviteFRC.fetchedObjects count] * 70.0 + ([inviteFRC.fetchedObjects count] > 1 ? ([inviteFRC.fetchedObjects count] - 1) * 10.0 : 0.0);
+//  if ([inviteFRC.fetchedObjects count] < 1) {
+  if (uiOption == UI_OPTIONS_ONLY_FRIEND || [inviteFRC.fetchedObjects count] < 1) {
+    [inviteCollectionViewHeightConstraint setConstant:0.0];
+    tableViewPullUpDistance = 80.0 + 50.0;
   } else {
-    height = height + ([inviteFRC.fetchedObjects count] > 1 ? 85.0 : 70.0);
+    CGFloat height = 40.0;
+    
+    if (isExpand) {
+      height = height + [inviteFRC.fetchedObjects count] * 70.0 + ([inviteFRC.fetchedObjects count] > 1 ? ([inviteFRC.fetchedObjects count] - 1) * 10.0 : 0.0);
+    } else {
+      height = height + ([inviteFRC.fetchedObjects count] > 1 ? 85.0 : 70.0);
+    }
+    
+    [inviteCollectionViewHeightConstraint setConstant:height];
+    tableViewPullUpDistance = 80.0 + 50.0 + height;
   }
   
-  [inviteCollectionViewHeightConstraint setConstant:height];
+  [friendTableViewTopConstraint setConstant:tableViewPullUpDistance];
+}
+
+- (void) exitSearch {
+  [searchBar setText:@""];
+  [self searchBar:searchBar textDidChange:@""];
+  [searchBar resignFirstResponder];
 }
 
 #pragma mark - UICollectionView
@@ -432,13 +452,8 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
   [refreshControl endRefreshing];
   
-//  if ([inviteFRC.fetchedObjects count] < 1) {
-  if (uiOption == UI_OPTIONS_ONLY_FRIEND || [inviteFRC.fetchedObjects count] < 1) {
-    [inviteCollectionViewHeightConstraint setConstant:0.0];
-  } else {
-    [self updateInviteCollectionViewHeight];
-    [inviteCollectionView reloadData];
-  }
+  [self updateInviteCollectionViewHeight];
+  [inviteCollectionView reloadData];
   
   int friendCount = 0;
   
@@ -458,7 +473,7 @@
 
 #pragma mark - UISearchBarDelegate
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-  if (searchBar.text == nil || [searchBar.text isEqualToString:@""]) {
+  if (searchBar.text == nil || [searchBar.text isEqualToString:@""] || [searchText isEqualToString:@""]) {
     isSearching = false;
     [friendTableView reloadData];
   } else {
@@ -469,6 +484,26 @@
     
     [friendTableView reloadData];
   }
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+  [self.view layoutIfNeeded];
+  [blockView setHidden:NO];
+  
+  [UIView animateWithDuration:0.3 animations:^{
+    [self->friendTableViewTopConstraint setConstant:0.0];
+    [self.view layoutIfNeeded];
+  }];
+}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+  [self.view layoutIfNeeded];
+  [blockView setHidden:YES];
+  
+  [UIView animateWithDuration:0.3 animations:^{
+    [self->friendTableViewTopConstraint setConstant:self->tableViewPullUpDistance];
+    [self.view layoutIfNeeded];
+  }];
 }
 
 @end
