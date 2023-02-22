@@ -81,7 +81,16 @@
   [friendTableView setDataSource:self];
   [friendTableView setDelegate:self];
   [friendTableView setTableFooterView:UIView.new];
+  [friendTableView setTableHeaderView:[[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 0.0f, CGFLOAT_MIN)]];
+  [friendTableView setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
+  [friendTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
   
+  searchBar = [[UISearchBar alloc] init];
+  [searchBar setPlaceholder:@"想轉一筆給誰呢？"];
+  [searchBar setTranslatesAutoresizingMaskIntoConstraints:NO];
+  [searchBar.layer setBorderWidth:1.0];
+  [searchBar.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+  [searchBar setDelegate:self];
   
   uiOption = [[[NSUserDefaults standardUserDefaults] objectForKey:@"uiOption"] intValue];
   NSLog(@"ui option: %d", uiOption);
@@ -277,23 +286,56 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
   FriendStatusTableViewCell * friendCell = [tableView dequeueReusableCellWithIdentifier:@"FriendStatusTableViewCell"];
   
-  Friend * friend = [friendFRC.fetchedObjects objectAtIndex:indexPath.row];
+  Friend * friend = isSearching ? [searchFriends objectAtIndex:indexPath.row] : [friendFRC.fetchedObjects objectAtIndex:indexPath.row];
   NSLog(@"%ld %@", (long)indexPath.row, friend);
   [friendCell.nameLabel setText:friend.name];
   [friendCell setShowStar:(friend.isTop == 1)];
   [friendCell setIsInviting:(friend.status == 2)];
   
   [friendCell setSelectionStyle:UITableViewCellSelectionStyleNone];
-  [friendCell setSeparatorInset:UIEdgeInsetsMake(0, 105, 0, 30)];
-  return friendCell;
+  return friendCell; 
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [friendFRC.fetchedObjects count];
+  return isSearching ? [searchFriends count] : [friendFRC.fetchedObjects count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   return 60.0;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+  return 60.0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+  UIView * sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0,
+                                                                        0,
+                                                                        [UIScreen mainScreen].bounds.size.width,
+                                                                        [self tableView:tableView heightForHeaderInSection:section])];
+  [sectionHeaderView setBackgroundColor:[UIColor whiteColor]];
+  
+  [sectionHeaderView addSubview:searchBar];
+  
+  UIButton * addFriendButton = [[UIButton alloc] init];
+  [addFriendButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+  [addFriendButton setTintColor:[UIColor colorNamed:@"ColorHotPink"]];
+  [addFriendButton setImage:[[UIImage imageNamed:@"icBtnAddFriends"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+  [sectionHeaderView addSubview:addFriendButton];
+  
+  [NSLayoutConstraint activateConstraints:@[
+    [NSLayoutConstraint constraintWithItem:searchBar attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:sectionHeaderView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0],
+    [NSLayoutConstraint constraintWithItem:searchBar attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:sectionHeaderView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0],
+    [NSLayoutConstraint constraintWithItem:searchBar attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:sectionHeaderView attribute:NSLayoutAttributeLeading multiplier:1.0 constant:20.0],
+    [NSLayoutConstraint constraintWithItem:searchBar attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:sectionHeaderView attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:-70.0],
+    [NSLayoutConstraint constraintWithItem:addFriendButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:sectionHeaderView attribute:NSLayoutAttributeTop multiplier:1.0 constant:10.0],
+    [NSLayoutConstraint constraintWithItem:addFriendButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:sectionHeaderView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-10.0],
+    [NSLayoutConstraint constraintWithItem:addFriendButton attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:sectionHeaderView attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:-15.0],
+    [NSLayoutConstraint constraintWithItem:addFriendButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:50.0],
+    [NSLayoutConstraint constraintWithItem:addFriendButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:50.0]
+  ]];
+  
+  return sectionHeaderView;
 }
 
 #pragma Network
@@ -339,6 +381,21 @@
 #pragma NSFetchedResultsControllerDelegate
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
   [friendTableView reloadData];
+}
+
+#pragma UISearchBarDelegate
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+  if (searchBar.text == nil || [searchBar.text isEqualToString:@""]) {
+    isSearching = false;
+    [friendTableView reloadData];
+  } else {
+    isSearching = true;
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"(name CONTAINS[c] %@)", searchText];
+    searchFriends = [[friendFRC.fetchedObjects filteredArrayUsingPredicate:predicate] mutableCopy];
+    
+    [friendTableView reloadData];
+  }
 }
 
 @end

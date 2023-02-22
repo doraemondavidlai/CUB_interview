@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FriendsViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate> {
+@interface FriendsViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate> {
   __weak IBOutlet UILabel *nameLabel;
   __weak IBOutlet UILabel *kokoIdLabel;
   __weak IBOutlet UIButton *setKokoIdButton;
@@ -31,6 +31,11 @@ NS_ASSUME_NONNULL_BEGIN
   NSArray * messageTitleArray;
   NSMutableArray * messageCountArray;
   NSFetchedResultsController * friendFRC;
+  
+  // Search
+  UISearchBar * searchBar;
+  NSMutableArray * searchFriends;
+  BOOL isSearching;
 }
 @end
 
